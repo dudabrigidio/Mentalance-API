@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using Serilog;
-using Serilog.Core;
 using Serilog.Events;
 using OpenTelemetry;
 using OpenTelemetry.Trace;
@@ -60,14 +59,6 @@ builder.Services.AddOpenTelemetry()
             };
         })
         .AddHttpClientInstrumentation()
-        .AddEntityFrameworkCoreInstrumentation(options =>
-        {
-            options.SetDbStatementForText = true;
-            options.EnrichWithIDbCommand = (activity, command) =>
-            {
-                activity.SetTag("db.command.text", command.CommandText);
-            };
-        })
         .AddSource("Mentalance.*")
         .AddConsoleExporter()
         );

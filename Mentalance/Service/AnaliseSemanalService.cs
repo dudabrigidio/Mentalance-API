@@ -61,7 +61,6 @@ namespace Mentalance.Service
             catch (Exception ex)
             {
                 activity?.SetStatus(ActivityStatusCode.Error, ex.Message);
-                activity?.RecordException(ex);
                 _logger.LogError(ex, "Erro ao buscar todas as análises semanales");
                 throw;
             }
@@ -103,7 +102,6 @@ namespace Mentalance.Service
             catch (Exception ex)
             {
                 activity?.SetStatus(ActivityStatusCode.Error, ex.Message);
-                activity?.RecordException(ex);
                 _logger.LogError(ex, "Erro ao buscar análise semanal com ID: {AnaliseId}", id);
                 throw;
             }
@@ -175,7 +173,6 @@ namespace Mentalance.Service
             catch (Exception ex)
             {
                 activity?.SetStatus(ActivityStatusCode.Error, ex.Message);
-                activity?.RecordException(ex);
                 _logger.LogError(ex, "Erro ao gerar análise semanal para usuário: {UserId}", idUsuario);
                 throw;
             }
@@ -225,7 +222,6 @@ namespace Mentalance.Service
             catch (Exception ex)
             {
                 activity?.SetStatus(ActivityStatusCode.Error, ex.Message);
-                activity?.RecordException(ex);
                 _logger.LogError(ex, "Erro ao excluir análise semanal com ID: {AnaliseId}", id);
                 throw;
             }

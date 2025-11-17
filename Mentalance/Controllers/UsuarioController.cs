@@ -99,7 +99,7 @@ namespace Mentalance.Controllers
         ///         }
         ///       
         /// </remarks>
-      
+        /// <param name="usuarioDto">Dados do usuário para criação</param>
         [HttpPost]
         public async Task<ActionResult<Usuario>> PostUsuario(UsuarioDto usuarioDto)
         {

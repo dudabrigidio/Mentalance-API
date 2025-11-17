@@ -1,0 +1,18 @@
+2025-11-17 20:26:16.571 -03:00 [INF] Iniciando aplicação Mentalance
+2025-11-17 20:26:17.377 -03:00 [INF] Now listening on: https://localhost:7050
+2025-11-17 20:26:17.482 -03:00 [INF] Now listening on: http://localhost:5030
+2025-11-17 20:26:18.192 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-17 20:26:18.195 -03:00 [INF] Hosting environment: Development
+2025-11-17 20:26:18.199 -03:00 [INF] Content root path: C:\Users\dudab\source\repos\Mentalance\Mentalance
+2025-11-17 20:26:21.689 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7050/_vs/browserLink - null null
+2025-11-17 20:26:21.689 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7050/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-17 20:26:21.860 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7050/_framework/aspnetcore-browser-refresh.js - 200 16504 application/javascript; charset=utf-8 189.5946ms
+2025-11-17 20:26:22.055 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7050/_vs/browserLink - 200 null text/javascript; charset=UTF-8 385.9326ms
+2025-11-17 20:26:22.202 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7050/swagger/v1/swagger.json - null null
+2025-11-17 20:26:22.301 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7050/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 99.3671ms
+2025-11-17 20:28:55.077 -03:00 [INF] Iniciando aplicação Mentalance
+2025-11-17 20:28:56.320 -03:00 [INF] Now listening on: https://localhost:7050
+2025-11-17 20:28:56.326 -03:00 [INF] Now listening on: http://localhost:5030
+2025-11-17 20:28:57.111 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-17 20:28:57.114 -03:00 [INF] Hosting environment: Development
+2025-11-17 20:28:57.115 -03:00 [INF] Content root path: C:\Users\dudab\source\repos\Mentalance\Mentalance

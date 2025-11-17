@@ -47,11 +47,12 @@
         "tags": [
           "AnaliseSemanal"
         ],
-        "summary": "Realização de AnaliseSemanal",
+        "summary": "Gera uma análise semanal para um usuário baseada nos check-ins dos últimos 7 dias",
         "parameters": [
           {
             "name": "idUsuario",
             "in": "query",
+            "description": "ID do usuário para o qual a análise será gerada",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -294,6 +295,7 @@
           }
         ],
         "requestBody": {
+          "description": "Dados do check-in para atualização",
           "content": {
             "application/json": {
               "schema": {
@@ -521,6 +523,7 @@
           }
         ],
         "requestBody": {
+          "description": "Dados do usuário para atualização",
           "content": {
             "application/json": {
               "schema": {
@@ -670,32 +673,39 @@
         "properties": {
           "idAnalise": {
             "type": "integer",
+            "description": "Identificador único da análise semanal",
             "format": "int32"
           },
           "idUsuario": {
             "type": "integer",
+            "description": "Identificador do usuário para o qual a análise foi gerada",
             "format": "int32"
           },
           "semanaReferencia": {
             "maxLength": 100,
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "description": "Período de referência da análise (ex: \"Semana 01/01/2024 a 07/01/2024\")"
           },
           "emocaoPredominante": {
             "maxLength": 100,
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "description": "Emoção que mais apareceu nos check-ins da semana"
           },
           "resumo": {
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "description": "Resumo textual gerado por ML sobre o estado emocional da semana"
           },
           "recomendacao": {
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "description": "Recomendação personalizada gerada por ML baseada na análise da semana"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Representa uma análise semanal gerada automaticamente baseada nos check-ins do usuário"
       },
       "Checkin": {
         "required": [
@@ -709,14 +719,17 @@
         "properties": {
           "idCheckin": {
             "type": "integer",
+            "description": "Identificador único do check-in",
             "format": "int32"
           },
           "idUsuario": {
             "type": "integer",
+            "description": "Identificador do usuário que realizou o check-in",
             "format": "int32"
           },
           "dataCheckin": {
             "type": "string",
+            "description": "Data e hora em que o check-in foi realizado",
             "format": "date-time"
           },
           "emoção": {
@@ -728,24 +741,29 @@
               "Calmo",
               "Estressado"
             ],
-            "type": "string"
+            "type": "string",
+            "description": "Emoção registrada pelo usuário no check-in"
           },
           "texto": {
             "maxLength": 100,
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "description": "Texto descritivo do check-in fornecido pelo usuário"
           },
           "análiseSentimento": {
             "maxLength": 100,
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "description": "Análise de sentimento gerada automaticamente (positivo, neutro, negativo)"
           },
           "respostaGerada": {
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "description": "Resposta personalizada gerada automaticamente baseada na emoção e texto"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Representa um check-in emocional realizado por um usuário"
       },
       "CheckinDto": {
         "required": [
@@ -756,6 +774,7 @@
         "properties": {
           "idUsuario": {
             "type": "integer",
+            "description": "Identificador do usuário que está realizando o check-in",
             "format": "int32"
           },
           "emoção": {
@@ -766,15 +785,18 @@
               "Calmo",
               "Estressado"
             ],
-            "type": "string"
+            "type": "string",
+            "description": "Emoção registrada pelo usuário no check-in"
           },
           "texto": {
             "maxLength": 100,
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "description": "Texto descritivo do check-in fornecido pelo usuário"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "DTO (Data Transfer Object) para criação e atualização de check-ins"
       },
       "LoginDto": {
         "required": [
@@ -786,14 +808,17 @@
           "email": {
             "maxLength": 100,
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "description": "Endereço de e-mail do usuário"
           },
           "senha": {
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "description": "Senha do usuário"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "DTO (Data Transfer Object) para autenticação de usuários"
       },
       "Usuario": {
         "required": [
@@ -807,33 +832,40 @@
         "properties": {
           "idUsuario": {
             "type": "integer",
+            "description": "Identificador único do usuário",
             "format": "int32"
           },
           "nome": {
             "maxLength": 100,
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "description": "Nome completo do usuário"
           },
           "email": {
             "maxLength": 100,
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "description": "Endereço de e-mail do usuário (usado para login)"
           },
           "senha": {
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "description": "Senha do usuário (armazenada em texto plano - considerar hash em produção)"
           },
           "cargo": {
             "maxLength": 100,
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "description": "Cargo/função do usuário no sistema"
           },
           "dataCadastro": {
             "type": "string",
+            "description": "Data e hora de cadastro do usuário no sistema",
             "format": "date-time"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Representa um usuário do sistema Mentalance"
       },
       "UsuarioDto": {
         "required": [
@@ -847,24 +879,29 @@
           "nome": {
             "maxLength": 100,
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "description": "Nome completo do usuário"
           },
           "email": {
             "maxLength": 100,
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "description": "Endereço de e-mail do usuário (usado para login)"
           },
           "senha": {
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "description": "Senha do usuário"
           },
           "cargo": {
             "maxLength": 100,
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "description": "Cargo/função do usuário no sistema"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "DTO (Data Transfer Object) para criação e atualização de usuários"
       },
       "WeatherForecast": {
         "type": "object",

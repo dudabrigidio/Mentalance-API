@@ -92,7 +92,6 @@ namespace Mentalance.ML.Service
             catch (Exception ex)
             {
                 activity?.SetStatus(ActivityStatusCode.Error, ex.Message);
-                activity?.RecordException(ex);
                 _logger.LogError(ex, "Erro ao inicializar MLService");
                 throw;
             }
@@ -227,7 +226,6 @@ namespace Mentalance.ML.Service
             catch (Exception ex)
             {
                 activity?.SetStatus(ActivityStatusCode.Error, ex.Message);
-                activity?.RecordException(ex);
                 _logger.LogError(ex, "Erro ao gerar resumo ML para usuário: {UsuarioId}", usuarioId);
                 throw;
             }
@@ -444,7 +442,6 @@ namespace Mentalance.ML.Service
             {
                 // Se houver erro ao ler o arquivo, loga e retorna lista vazia
                 activity?.SetStatus(ActivityStatusCode.Error, ex.Message);
-                activity?.RecordException(ex);
                 _logger.LogError(ex, "Erro ao carregar dados de treinamento do arquivo JSON");
             }
 

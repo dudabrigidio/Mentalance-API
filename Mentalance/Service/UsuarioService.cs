@@ -51,7 +51,6 @@ namespace Mentalance.Service
             catch (Exception ex)
             {
                 activity?.SetStatus(ActivityStatusCode.Error, ex.Message);
-                activity?.RecordException(ex);
                 _logger.LogError(ex, "Erro ao buscar todos os usuários");
                 throw;
             }
@@ -93,7 +92,6 @@ namespace Mentalance.Service
             catch (Exception ex)
             {
                 activity?.SetStatus(ActivityStatusCode.Error, ex.Message);
-                activity?.RecordException(ex);
                 _logger.LogError(ex, "Erro ao buscar usuário com ID: {UserId}", id);
                 throw;
             }
@@ -183,7 +181,6 @@ namespace Mentalance.Service
             catch (Exception ex)
             {
                 activity?.SetStatus(ActivityStatusCode.Error, ex.Message);
-                activity?.RecordException(ex);
                 _logger.LogError(ex, "Erro ao criar usuário");
                 throw;
             }
@@ -287,7 +284,6 @@ namespace Mentalance.Service
             catch (Exception ex)
             {
                 activity?.SetStatus(ActivityStatusCode.Error, ex.Message);
-                activity?.RecordException(ex);
                 _logger.LogError(ex, "Erro ao atualizar usuário com ID: {UserId}", id);
                 throw;
             }
@@ -332,7 +328,6 @@ namespace Mentalance.Service
             catch (Exception ex)
             {
                 activity?.SetStatus(ActivityStatusCode.Error, ex.Message);
-                activity?.RecordException(ex);
                 _logger.LogError(ex, "Erro ao excluir usuário com ID: {UserId}", id);
                 throw;
             }
@@ -394,7 +389,6 @@ namespace Mentalance.Service
             catch (Exception ex)
             {
                 activity?.SetStatus(ActivityStatusCode.Error, ex.Message);
-                activity?.RecordException(ex);
                 _logger.LogError(ex, "Erro ao fazer login");
                 throw;
             }

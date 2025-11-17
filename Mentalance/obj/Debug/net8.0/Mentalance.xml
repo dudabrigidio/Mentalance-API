@@ -402,11 +402,12 @@
             Serviço de Machine Learning para geração de análises e recomendações baseadas em check-ins
             </summary>
         </member>
-        <member name="M:Mentalance.ML.Service.MLService.#ctor(Mentalance.Repository.ICheckinRepository)">
+        <member name="M:Mentalance.ML.Service.MLService.#ctor(Mentalance.Repository.ICheckinRepository,Microsoft.Extensions.Logging.ILogger{Mentalance.ML.Service.MLService})">
             <summary>
             Inicializa uma nova instância do MLService
             </summary>
             <param name="checkinRepository">Repositório de check-ins para buscar dados de treinamento</param>
+            <param name="logger">Logger para registro de eventos</param>
         </member>
         <member name="M:Mentalance.ML.Service.MLService.GerarResumoAsync(System.Int32)">
             <summary>

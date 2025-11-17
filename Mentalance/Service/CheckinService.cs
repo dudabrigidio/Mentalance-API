@@ -55,7 +55,6 @@ namespace Mentalance.Service
             catch (Exception ex)
             {
                 activity?.SetStatus(ActivityStatusCode.Error, ex.Message);
-                activity?.RecordException(ex);
                 _logger.LogError(ex, "Erro ao buscar todos os checkins");
                 throw;
             }
@@ -99,7 +98,6 @@ namespace Mentalance.Service
             catch (Exception ex)
             {
                 activity?.SetStatus(ActivityStatusCode.Error, ex.Message);
-                activity?.RecordException(ex);
                 _logger.LogError(ex, "Erro ao buscar checkin com ID: {CheckinId}", id);
                 throw;
             }
@@ -201,7 +199,6 @@ namespace Mentalance.Service
             catch (Exception ex)
             {
                 activity?.SetStatus(ActivityStatusCode.Error, ex.Message);
-                activity?.RecordException(ex);
                 _logger.LogError(ex, "Erro ao criar checkin para usuário {UsuarioId}", checkinDto?.IdUsuario);
                 throw;
             }
@@ -306,7 +303,6 @@ namespace Mentalance.Service
             catch (Exception ex)
             {
                 activity?.SetStatus(ActivityStatusCode.Error, ex.Message);
-                activity?.RecordException(ex);
                 _logger.LogError(ex, "Erro ao atualizar checkin com ID: {CheckinId}", id);
                 throw;
             }
@@ -354,7 +350,6 @@ namespace Mentalance.Service
             catch (Exception ex)
             {
                 activity?.SetStatus(ActivityStatusCode.Error, ex.Message);
-                activity?.RecordException(ex);
                 _logger.LogError(ex, "Erro ao excluir checkin com ID: {CheckinId}", id);
                 throw;
             }
