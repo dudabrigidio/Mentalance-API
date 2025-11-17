@@ -1,0 +1,324 @@
+[
+  {
+    "Emocoes": "Feliz,Feliz,Calmo,Feliz,Calmo,Feliz,Calmo",
+    "Textos": "Dia produtivo. Consegui finalizar o projeto importante que estava pendente há semanas. Momento tranquilo à noite. Mais uma conquista importante no trabalho. Equilíbrio mantido entre vida pessoal e profissional. Sensação de bem-estar geral. Paz interior após um dia bem-sucedido.",
+    "EmocaoPredominante": "Feliz",
+    "ResumoEsperado": "Semana positiva com foco em produtividade e realizações profissionais. Momentos de calma e bem-estar, demonstrando bom equilíbrio entre trabalho e vida pessoal.",
+    "RecomendacaoEsperada": "Continue mantendo atividades que trazem bem-estar. Considere registrar o que funcionou bem para replicar no futuro."
+  },
+  {
+    "Emocoes": "Ansioso,Ansioso,Estressado,Ansioso,Estressado,Ansioso,Estressado",
+    "Textos": "Muitas tarefas pendentes acumulando. Prazos apertados me pressionando. Trabalho em excesso sem tempo para descansar. Pressão constante do chefe. Conflitos no trabalho com colegas. Preocupações acumulando sobre o futuro. Tensão diária afetando meu sono.",
+    "EmocaoPredominante": "Ansioso",
+    "ResumoEsperado": "Período de ansiedade intensa devido à sobrecarga de trabalho e pressão constante. Necessidade urgente de organização, priorização de tarefas e técnicas de gerenciamento de estresse.",
+    "RecomendacaoEsperada": "Pratique técnicas de respiração e mindfulness. Organize suas tarefas por prioridade e considere dividir objetivos grandes em etapas menores."
+  },
+  {
+    "Emocoes": "Cansado,Cansado,Calmo,Cansado,Calmo,Cansado,Calmo",
+    "Textos": "Preciso descansar urgentemente. Muito trabalho esta semana sem pausas adequadas. Finalmente um momento de paz no domingo. Exausto fisicamente após dias intensos. Momento de serenidade ao ar livre. Falta de energia para atividades básicas. Descanso necessário para recuperação completa.",
+    "EmocaoPredominante": "Cansado",
+    "ResumoEsperado": "Período de cansaço significativo devido ao excesso de atividades profissionais sem descanso adequado. Importante priorizar descanso, recuperação física e mental, e estabelecer limites de trabalho.",
+    "RecomendacaoEsperada": "Priorize o descanso e o sono adequado. Considere revisar sua rotina para evitar sobrecarga e estabelecer limites saudáveis."
+  },
+  {
+    "Emocoes": "Calmo,Calmo,Feliz,Calmo,Feliz,Calmo,Feliz",
+    "Textos": "Dia tranquilo sem pressões. Equilíbrio perfeito entre trabalho e vida pessoal. Momento feliz com família no almoço. Serenidade mantida durante toda a semana. Conquistas pessoais importantes alcançadas. Paz interior constante. Bem-estar geral em todos os aspectos da vida.",
+    "EmocaoPredominante": "Calmo",
+    "ResumoEsperado": "Semana tranquila com momentos de descanso e serenidade. Boa gestão do tempo permitindo equilíbrio entre responsabilidades e bem-estar pessoal, resultando em satisfação geral.",
+    "RecomendacaoEsperada": "Mantenha os hábitos que estão trazendo tranquilidade. Continue com práticas de autocuidado e organização."
+  },
+  {
+    "Emocoes": "Estressado,Estressado,Ansioso,Estressado,Ansioso,Estressado,Ansioso",
+    "Textos": "Conflitos no trabalho com equipe. Tensão constante com prazos impossíveis. Preocupações com decisões importantes que afetam o futuro. Pressão constante do ambiente corporativo. Deadlines apertados sem recursos suficientes. Problemas acumulando sem solução. Sobrecarga mental afetando minha saúde.",
+    "EmocaoPredominante": "Estressado",
+    "ResumoEsperado": "Semana estressante com tensões profissionais intensas e desafios interpessoais. Necessidade urgente de estratégias de gerenciamento de estresse, comunicação assertiva e estabelecimento de limites.",
+    "RecomendacaoEsperada": "Identifique as principais fontes de estresse e desenvolva estratégias de enfrentamento. Pratique exercícios físicos e técnicas de relaxamento regularmente."
+  },
+  {
+    "Emocoes": "Feliz,Feliz,Feliz,Feliz,Calmo,Feliz,Calmo",
+    "Textos": "Conquista importante no trabalho após meses de esforço. Tempo de qualidade com amigos no final de semana. Sensação de sucesso e realização pessoal. Mais vitórias pessoais alcançadas. Momento de paz e reflexão. Satisfação geral com a vida. Bem-estar completo em todos os aspectos.",
+    "EmocaoPredominante": "Feliz",
+    "ResumoEsperado": "Semana marcada por conquistas significativas e sentimentos de realização profissional e pessoal. Momentos importantes de conexão social e bem-estar geral, demonstrando satisfação com a vida.",
+    "RecomendacaoEsperada": "Continue mantendo atividades que trazem bem-estar. Considere registrar o que funcionou bem para replicar no futuro."
+  },
+  {
+    "Emocoes": "Calmo,Calmo,Calmo,Calmo,Calmo,Calmo,Calmo",
+    "Textos": "Prática de meditação diária pela manhã. Respiração consciente durante o trabalho. Momento zen e sereno no parque. Equilíbrio perfeito em todas as áreas. Paz interior constante mantida. Serenidade mantida mesmo em situações desafiadoras. Tranquilidade total na vida pessoal e profissional.",
+    "EmocaoPredominante": "Calmo",
+    "ResumoEsperado": "Semana serena com práticas consistentes de mindfulness e autoconhecimento. Período de calma e estabilidade emocional, demonstrando boa gestão do estresse e bem-estar mental.",
+    "RecomendacaoEsperada": "Mantenha os hábitos que estão trazendo tranquilidade. Continue com práticas de autocuidado e organização."
+  },
+  {
+    "Emocoes": "Ansioso,Ansioso,Ansioso,Ansioso,Estressado,Ansioso,Estressado",
+    "Textos": "Decisão importante pela frente sobre mudança de carreira. Dúvida constante sobre o futuro profissional. Incerteza sobre escolhas que afetam minha vida. Preocupações constantes me mantendo acordado. Pressão mental de familiares e amigos. Medo do desconhecido e do fracasso. Tensão acumulada afetando minha saúde mental.",
+    "EmocaoPredominante": "Ansioso",
+    "ResumoEsperado": "Período ansioso intenso com preocupações sobre o futuro e incertezas sobre decisões importantes. Semana marcada por ansiedade relacionada a tomadas de decisão que afetam o futuro profissional e pessoal. Necessidade de apoio e técnicas de gerenciamento de ansiedade.",
+    "RecomendacaoEsperada": "Pratique técnicas de respiração e mindfulness. Organize suas tarefas por prioridade e considere dividir objetivos grandes em etapas menores."
+  },
+  {
+    "Emocoes": "Cansado,Cansado,Cansado,Cansado,Cansado,Calmo,Cansado",
+    "Textos": "Exausto fisicamente após treinos intensos. Falta de energia para atividades diárias. Necessidade urgente de dormir e repousar adequadamente. Sobrecarga total de compromissos. Esgotamento mental afetando concentração. Momento de paz no domingo. Necessidade de recuperação completa do corpo e mente.",
+    "EmocaoPredominante": "Cansado",
+    "ResumoEsperado": "Semana marcada por fadiga extrema relacionada à falta de descanso adequado e sobrecarga de atividades. Período de esgotamento físico e mental, necessitando de pausa urgente, descanso adequado e reavaliação de prioridades.",
+    "RecomendacaoEsperada": "Priorize o descanso e o sono adequado. Considere revisar sua rotina para evitar sobrecarga e estabelecer limites saudáveis."
+  },
+  {
+    "Emocoes": "Estressado,Estressado,Estressado,Estressado,Estressado,Ansioso,Estressado",
+    "Textos": "Pressão constante no trabalho sem alívio. Correria diária e urgências constantes. Imprevistos e mudanças inesperadas no planejamento. Conflitos diários com colegas e superiores. Tensão permanente afetando relacionamentos. Preocupações sobre desempenho e futuro. Sobrecarga total sem perspectiva de melhora.",
+    "EmocaoPredominante": "Estressado",
+    "ResumoEsperado": "Período de estresse crônico devido à sobrecarga constante e falta de organização. Semana estressante com imprevistos frequentes e necessidade de adaptação constante. Urgente necessidade de estratégias de gerenciamento de estresse e reavaliação do ambiente de trabalho.",
+    "RecomendacaoEsperada": "Identifique as principais fontes de estresse e desenvolva estratégias de enfrentamento. Pratique exercícios físicos e técnicas de relaxamento regularmente."
+  },
+  {
+    "Emocoes": "Feliz,Calmo,Feliz,Calmo,Feliz,Calmo,Feliz",
+    "Textos": "Equilíbrio perfeito entre todas as áreas da vida. Organizado e planejado com antecedência. Momentos felizes com pessoas queridas no final de semana. Serenidade mantida durante desafios. Conquistas pessoais importantes alcançadas. Paz interior constante. Bem-estar completo em todos os aspectos da vida.",
+    "EmocaoPredominante": "Feliz",
+    "ResumoEsperado": "Período feliz com momentos importantes de conexão pessoal e social. Período calmo com boa gestão do tempo e bem-estar geral, demonstrando equilíbrio saudável entre responsabilidades e satisfação pessoal.",
+    "RecomendacaoEsperada": "Continue mantendo atividades que trazem bem-estar. Considere registrar o que funcionou bem para replicar no futuro."
+  },
+  {
+    "Emocoes": "Ansioso,Calmo,Ansioso,Calmo,Ansioso,Calmo,Ansioso",
+    "Textos": "Preocupações iniciais sobre apresentação importante, mas consegui me acalmar. Meditação matinal ajudou muito. Ainda há algumas dúvidas sobre o futuro. Momentos de paz durante caminhadas. Tensão intermitente ao longo do dia. Equilíbrio buscado através de práticas de mindfulness. Preocupações persistentes mas controladas.",
+    "EmocaoPredominante": "Ansioso",
+    "ResumoEsperado": "Período ansioso com dificuldade de relaxar completamente, mas com progresso através de técnicas de relaxamento. Considere continuar práticas de mindfulness e organização de tarefas para reduzir ansiedade residual.",
+    "RecomendacaoEsperada": "Pratique técnicas de respiração e mindfulness. Organize suas tarefas por prioridade e considere dividir objetivos grandes em etapas menores."
+  },
+  {
+    "Emocoes": "Cansado,Feliz,Cansado,Feliz,Cansado,Feliz,Cansado",
+    "Textos": "Muito trabalho esta semana, mas consegui completar todas as tarefas importantes. Sensação de dever cumprido, porém exausto fisicamente. Conquistas importantes no trabalho reconhecidas. Fadiga física após esforço intenso. Satisfação pessoal com resultados alcançados. Esgotamento parcial mas recompensador. Realizações que compensam o cansaço.",
+    "EmocaoPredominante": "Cansado",
+    "ResumoEsperado": "Período de cansaço devido ao excesso de atividades profissionais, mas com satisfação pelas realizações. Semana positiva com foco em produtividade e conquistas, demonstrando que o esforço foi recompensado. Importante priorizar descanso para recuperação.",
+    "RecomendacaoEsperada": "Priorize o descanso e o sono adequado. Considere revisar sua rotina para evitar sobrecarga e estabelecer limites saudáveis."
+  },
+  {
+    "Emocoes": "Estressado,Cansado,Estressado,Cansado,Estressado,Cansado,Estressado",
+    "Textos": "Sobrecarga de trabalho sem fim à vista. Físico e mentalmente esgotado após semanas intensas. Conflitos e problemas constantes no ambiente profissional. Pressão diária afetando saúde física. Falta de energia para atividades pessoais. Tensão permanente sem alívio. Necessidade urgente de pausa e recuperação completa.",
+    "EmocaoPredominante": "Estressado",
+    "ResumoEsperado": "Semana estressante com tensões profissionais intensas e desafios interpessoais constantes. Período de esgotamento físico e mental, necessitando de pausa urgente, descanso adequado e reavaliação do ambiente de trabalho para prevenir burnout.",
+    "RecomendacaoEsperada": "Identifique as principais fontes de estresse e desenvolva estratégias de enfrentamento. Pratique exercícios físicos e técnicas de relaxamento regularmente."
+  },
+  {
+    "Emocoes": "Calmo,Feliz,Calmo,Feliz,Calmo,Feliz,Calmo",
+    "Textos": "Tranquilidade e paz interior mantidas. Momentos felizes de conexão com família e amigos. Serenidade mantida mesmo em situações desafiadoras. Conquistas pessoais importantes alcançadas. Equilíbrio perfeito entre todas as áreas. Bem-estar geral em todos os aspectos. Paz constante na vida diária.",
+    "EmocaoPredominante": "Calmo",
+    "ResumoEsperado": "Semana tranquila com momentos de descanso e serenidade. Período feliz com momentos importantes de conexão pessoal e social, demonstrando bem-estar geral e satisfação com a vida.",
+    "RecomendacaoEsperada": "Mantenha os hábitos que estão trazendo tranquilidade. Continue com práticas de autocuidado e organização."
+  },
+  {
+    "Emocoes": "Feliz,Ansioso,Feliz,Ansioso,Feliz,Ansioso,Feliz",
+    "Textos": "Sucesso no trabalho com promoção importante. Vitória significativa, porém incerteza sobre novos desafios. Conquistas significativas reconhecidas publicamente. Dúvidas persistentes sobre capacidade de lidar com novas responsabilidades. Realizações importantes alcançadas. Preocupações sobre expectativas futuras. Satisfação com ressalvas sobre o futuro.",
+    "EmocaoPredominante": "Feliz",
+    "ResumoEsperado": "Semana marcada por conquistas significativas e sentimentos de realização profissional. Considere técnicas de relaxamento e organização de tarefas para gerenciar ansiedade relacionada a novas responsabilidades e manter o foco nas realizações.",
+    "RecomendacaoEsperada": "Continue mantendo atividades que trazem bem-estar. Considere registrar o que funcionou bem para replicar no futuro."
+  },
+  {
+    "Emocoes": "Estressado,Ansioso,Estressado,Ansioso,Estressado,Ansioso,Estressado",
+    "Textos": "Deadline apertado para projeto crítico. Tarefas pendentes acumulando sem tempo para resolver. Pressão e preocupação constante sobre resultados. Conflitos no trabalho afetando produtividade. Tensão mental afetando qualidade do sono. Sobrecarga total sem perspectiva de alívio. Necessidade urgente de organização e priorização.",
+    "EmocaoPredominante": "Estressado",
+    "ResumoEsperado": "Período de estresse intenso devido à sobrecarga e falta de organização. Período de ansiedade devido à sobrecarga de trabalho e pressão constante. Necessidade urgente de estratégias de gerenciamento de tempo, priorização e técnicas de relaxamento.",
+    "RecomendacaoEsperada": "Identifique as principais fontes de estresse e desenvolva estratégias de enfrentamento. Pratique exercícios físicos e técnicas de relaxamento regularmente."
+  },
+  {
+    "Emocoes": "Cansado,Calmo,Cansado,Calmo,Cansado,Calmo,Cansado",
+    "Textos": "Preciso de mais descanso após semana intensa. Momento de paz após término de projeto importante. Energia baixa, mas mente tranquila e satisfeita. Fadiga física após esforço prolongado. Serenidade buscada através de atividades relaxantes. Esgotamento parcial mas gerenciável. Equilíbrio necessário entre descanso e atividades.",
+    "EmocaoPredominante": "Cansado",
+    "ResumoEsperado": "Período de cansaço que requer atenção ao descanso e recuperação. Semana tranquila com momentos de descanso e serenidade, demonstrando necessidade de equilíbrio entre esforço e recuperação para manter bem-estar.",
+    "RecomendacaoEsperada": "Priorize o descanso e o sono adequado. Considere revisar sua rotina para evitar sobrecarga e estabelecer limites saudáveis."
+  },
+  {
+    "Emocoes": "Feliz,Feliz,Ansioso,Feliz,Ansioso,Feliz,Ansioso",
+    "Textos": "Conquistas importantes no trabalho e vida pessoal. Tempo de qualidade com família e amigos no final de semana. Mas preocupado com decisões futuras sobre carreira. Momentos felizes de celebração. Dúvidas sobre próximos passos profissionais. Satisfação geral com progresso atual. Incertezas sobre direção futura.",
+    "EmocaoPredominante": "Feliz",
+    "ResumoEsperado": "Semana positiva com bem-estar geral e conquistas importantes. Considere técnicas de relaxamento e organização de tarefas para gerenciar ansiedade sobre decisões futuras, mantendo foco nas realizações atuais.",
+    "RecomendacaoEsperada": "Continue mantendo atividades que trazem bem-estar. Considere registrar o que funcionou bem para replicar no futuro."
+  },
+  {
+    "Emocoes": "Calmo,Estressado,Calmo,Estressado,Calmo,Estressado,Calmo",
+    "Textos": "Dia tranquilo interrompido por problemas inesperados no trabalho. Consegui me acalmar novamente através de técnicas de respiração. Tensão momentânea mas controlada. Serenidade restaurada após resolução de conflitos. Conflitos passageiros sem impacto duradouro. Paz recuperada através de comunicação assertiva. Equilíbrio mantido apesar de desafios.",
+    "EmocaoPredominante": "Calmo",
+    "ResumoEsperado": "Período de calma e estabilidade emocional, demonstrando capacidade de gerenciar estresse efetivamente. Necessidade de estratégias de gerenciamento de estresse para lidar com interrupções e manter serenidade.",
+    "RecomendacaoEsperada": "Mantenha os hábitos que estão trazendo tranquilidade. Continue com práticas de autocuidado e organização."
+  },
+  {
+    "Emocoes": "Ansioso,Cansado,Ansioso,Cansado,Ansioso,Cansado,Ansioso",
+    "Textos": "Preocupações me mantendo acordado durante a noite. Falta de sono adequado afetando energia diária. Dúvidas e cansaço mental dificultando concentração. Tensão constante sobre decisões pendentes. Esgotamento físico e mental combinados. Incertezas sobre futuro profissional. Necessidade urgente de descanso e clareza mental.",
+    "EmocaoPredominante": "Ansioso",
+    "ResumoEsperado": "Período ansioso com dificuldade de relaxar e descansar adequadamente. Priorize descanso adequado, gestão de energia e técnicas de gerenciamento de ansiedade para restaurar bem-estar físico e mental.",
+    "RecomendacaoEsperada": "Pratique técnicas de respiração e mindfulness. Organize suas tarefas por prioridade e considere dividir objetivos grandes em etapas menores."
+  },
+  {
+    "Emocoes": "Estressado,Feliz,Estressado,Feliz,Estressado,Feliz,Estressado",
+    "Textos": "Conflitos no trabalho, mas consegui resolver através de diálogo. Sensação de vitória após superar desafio importante. Ainda há pressão sobre próximos projetos. Conquistas importantes reconhecidas pela equipe. Tensão intermitente mas gerenciável. Realizações que compensam o estresse. Sobrecarga parcial mas com progresso visível.",
+    "EmocaoPredominante": "Estressado",
+    "ResumoEsperado": "Semana estressante com tensões profissionais e desafios interpessoais, mas com resolução positiva de conflitos. Semana marcada por conquistas e sentimentos de realização, demonstrando capacidade de superar desafios apesar do estresse.",
+    "RecomendacaoEsperada": "Identifique as principais fontes de estresse e desenvolva estratégias de enfrentamento. Pratique exercícios físicos e técnicas de relaxamento regularmente."
+  },
+  {
+    "Emocoes": "Feliz,Cansado,Feliz,Cansado,Feliz,Cansado,Feliz",
+    "Textos": "Trabalho duro recompensado com reconhecimento importante. Exausto mas satisfeito com resultados alcançados. Conquistas importantes esta semana no trabalho. Fadiga física após esforço intenso. Realizações significativas que valeram o esforço. Esgotamento parcial mas recompensador. Bem-estar geral apesar do cansaço.",
+    "EmocaoPredominante": "Feliz",
+    "ResumoEsperado": "Semana positiva com foco em produtividade e realizações profissionais importantes. Priorize descanso adequado e gestão de energia para manter produtividade e bem-estar, reconhecendo que o esforço foi recompensado.",
+    "RecomendacaoEsperada": "Continue mantendo atividades que trazem bem-estar. Considere registrar o que funcionou bem para replicar no futuro."
+  },
+  {
+    "Emocoes": "Calmo,Ansioso,Calmo,Ansioso,Calmo,Ansioso,Calmo",
+    "Textos": "Prática de mindfulness ajudou a manter equilíbrio. Momentos de preocupação, mas consegui me acalmar rapidamente. Equilíbrio restaurado através de técnicas de respiração. Serenidade buscada e encontrada. Dúvidas passageiras sobre decisões. Paz interior mantida apesar de desafios. Tensão controlada efetivamente.",
+    "EmocaoPredominante": "Calmo",
+    "ResumoEsperado": "Semana serena com práticas consistentes de mindfulness e autoconhecimento. Considere técnicas de relaxamento e organização de tarefas para gerenciar ansiedade residual e manter serenidade.",
+    "RecomendacaoEsperada": "Mantenha os hábitos que estão trazendo tranquilidade. Continue com práticas de autocuidado e organização."
+  },
+  {
+    "Emocoes": "Cansado,Estressado,Cansado,Estressado,Cansado,Estressado,Cansado",
+    "Textos": "Sobrecarga física e mental sem perspectiva de alívio. Problemas no trabalho acumulando sem solução. Necessidade urgente de pausa e recuperação completa. Esgotamento total afetando saúde. Conflitos constantes no ambiente profissional. Fadiga extrema impedindo funcionamento adequado. Tensão permanente sem estratégias efetivas de alívio.",
+    "EmocaoPredominante": "Cansado",
+    "ResumoEsperado": "Período de esgotamento físico e mental crítico, necessitando de pausa urgente e intervenção. Necessidade de estratégias de gerenciamento de estresse, reavaliação do ambiente de trabalho e priorização de saúde física e mental para prevenir burnout.",
+    "RecomendacaoEsperada": "Priorize o descanso e o sono adequado. Considere revisar sua rotina para evitar sobrecarga e estabelecer limites saudáveis."
+  },
+  {
+    "Emocoes": "Feliz,Calmo,Feliz,Calmo,Feliz,Calmo,Feliz",
+    "Textos": "Semana equilibrada sem grandes pressões. Produtividade sem estresse excessivo. Momentos felizes e serenos com pessoas queridas. Boa gestão do tempo permitindo equilíbrio. Conquistas pessoais importantes alcançadas. Paz interior constante mantida. Bem-estar completo em todos os aspectos da vida.",
+    "EmocaoPredominante": "Feliz",
+    "ResumoEsperado": "Semana positiva com bem-estar geral e equilíbrio saudável. Semana tranquila com momentos de descanso e serenidade. Boa gestão do tempo e bem-estar geral, demonstrando satisfação e harmonia na vida pessoal e profissional.",
+    "RecomendacaoEsperada": "Continue mantendo atividades que trazem bem-estar. Considere registrar o que funcionou bem para replicar no futuro."
+  },
+  {
+    "Emocoes": "Ansioso,Estressado,Ansioso,Estressado,Ansioso,Estressado,Ansioso",
+    "Textos": "Prazos apertados para múltiplos projetos simultâneos. Conflitos constantes com equipe e superiores. Preocupações sobre decisões que afetam futuro. Pressão em todos os aspectos da vida profissional. Tensão diária afetando saúde mental. Sobrecarga mental sem perspectiva de alívio. Necessidade urgente de organização e priorização.",
+    "EmocaoPredominante": "Ansioso",
+    "ResumoEsperado": "Período de ansiedade intensa devido à sobrecarga de trabalho e pressão constante em múltiplas áreas. Necessidade urgente de estratégias de gerenciamento de estresse, organização de tarefas e técnicas de relaxamento para restaurar bem-estar.",
+    "RecomendacaoEsperada": "Pratique técnicas de respiração e mindfulness. Organize suas tarefas por prioridade e considere dividir objetivos grandes em etapas menores."
+  },
+  {
+    "Emocoes": "Calmo,Cansado,Calmo,Cansado,Calmo,Cansado,Calmo",
+    "Textos": "Mente tranquila apesar do cansaço físico após exercícios. Descanso necessário para recuperação adequada. Paz interior mantida através de práticas de relaxamento. Fadiga presente mas gerenciável. Serenidade buscada e encontrada. Esgotamento parcial mas sem estresse. Equilíbrio necessário entre atividade e descanso.",
+    "EmocaoPredominante": "Calmo",
+    "ResumoEsperado": "Período de calma e estabilidade emocional, demonstrando boa gestão do cansaço físico. Priorize descanso adequado e gestão de energia para manter serenidade e bem-estar, reconhecendo necessidade de equilíbrio.",
+    "RecomendacaoEsperada": "Mantenha os hábitos que estão trazendo tranquilidade. Continue com práticas de autocuidado e organização."
+  },
+  {
+    "Emocoes": "Feliz,Feliz,Feliz,Calmo,Feliz,Calmo,Feliz",
+    "Textos": "Promoção importante no trabalho após meses de dedicação. Tempo de qualidade com família no final de semana. Sensação de sucesso e realização profissional. Momento de paz e reflexão sobre conquistas. Satisfação geral com progresso na carreira. Bem-estar completo em todos os aspectos. Reconhecimento público de esforços.",
+    "EmocaoPredominante": "Feliz",
+    "ResumoEsperado": "Semana marcada por conquistas profissionais significativas e sentimentos de realização. Momentos importantes de conexão pessoal e bem-estar geral, demonstrando satisfação com progresso e reconhecimento de esforços.",
+    "RecomendacaoEsperada": "Continue mantendo atividades que trazem bem-estar. Considere registrar o que funcionou bem para replicar no futuro."
+  },
+  {
+    "Emocoes": "Estressado,Estressado,Estressado,Cansado,Estressado,Cansado,Estressado",
+    "Textos": "Pressão constante no trabalho sem alívio. Correria diária afetando saúde física. Imprevistos constantes dificultando planejamento. Conflitos diários com equipe. Tensão permanente causando fadiga. Preocupações sobre desempenho. Sobrecarga total resultando em esgotamento.",
+    "EmocaoPredominante": "Estressado",
+    "ResumoEsperado": "Período de estresse crônico devido à sobrecarga constante e falta de organização. Semana estressante resultando em esgotamento físico e mental. Necessidade urgente de pausa, reavaliação do ambiente de trabalho e estratégias de gerenciamento de estresse.",
+    "RecomendacaoEsperada": "Identifique as principais fontes de estresse e desenvolva estratégias de enfrentamento. Pratique exercícios físicos e técnicas de relaxamento regularmente."
+  },
+  {
+    "Emocoes": "Calmo,Feliz,Calmo,Feliz,Calmo,Feliz,Calmo",
+    "Textos": "Tranquilidade mantida durante toda a semana. Momentos felizes de conexão com pessoas importantes. Serenidade mantida em situações desafiadoras. Conquistas pessoais importantes alcançadas. Equilíbrio perfeito entre responsabilidades. Bem-estar geral em todos os aspectos. Paz constante na vida diária.",
+    "EmocaoPredominante": "Calmo",
+    "ResumoEsperado": "Semana tranquila com momentos de descanso e serenidade. Período feliz com momentos importantes de conexão pessoal, demonstrando bem-estar geral e satisfação com a vida através de equilíbrio saudável.",
+    "RecomendacaoEsperada": "Mantenha os hábitos que estão trazendo tranquilidade. Continue com práticas de autocuidado e organização."
+  },
+  {
+    "Emocoes": "Ansioso,Ansioso,Ansioso,Cansado,Ansioso,Cansado,Ansioso",
+    "Textos": "Preocupações constantes sobre futuro profissional. Dúvidas sobre capacidade de lidar com novos desafios. Incerteza sobre decisões importantes. Preocupações me mantendo acordado. Falta de sono adequado afetando energia. Dúvidas persistentes sobre direção. Necessidade de clareza mental e descanso.",
+    "EmocaoPredominante": "Ansioso",
+    "ResumoEsperado": "Período ansioso intenso com preocupações sobre futuro e incertezas. Priorize descanso adequado, gestão de energia e técnicas de gerenciamento de ansiedade para restaurar clareza mental e bem-estar.",
+    "RecomendacaoEsperada": "Pratique técnicas de respiração e mindfulness. Organize suas tarefas por prioridade e considere dividir objetivos grandes em etapas menores."
+  },
+  {
+    "Emocoes": "Feliz,Cansado,Feliz,Cansado,Feliz,Cansado,Feliz",
+    "Textos": "Trabalho duro recompensado com resultados excelentes. Exausto mas extremamente satisfeito com conquistas. Realizações importantes esta semana no trabalho. Fadiga física após esforço intenso mas recompensador. Conquistas significativas que valeram todo esforço. Esgotamento parcial mas com satisfação. Bem-estar geral apesar do cansaço.",
+    "EmocaoPredominante": "Feliz",
+    "ResumoEsperado": "Semana positiva com foco em produtividade e realizações profissionais importantes. Priorize descanso adequado e gestão de energia para manter produtividade, reconhecendo que o esforço foi recompensado com sucesso.",
+    "RecomendacaoEsperada": "Continue mantendo atividades que trazem bem-estar. Considere registrar o que funcionou bem para replicar no futuro."
+  },
+  {
+    "Emocoes": "Calmo,Calmo,Calmo,Feliz,Calmo,Feliz,Calmo",
+    "Textos": "Prática diária de meditação mantendo serenidade. Respiração consciente durante trabalho. Momento feliz com conquista pessoal importante. Equilíbrio perfeito em todas as áreas. Paz interior constante mantida. Serenidade mantida mesmo em desafios. Tranquilidade total na vida diária.",
+    "EmocaoPredominante": "Calmo",
+    "ResumoEsperado": "Semana serena com práticas consistentes de mindfulness e autoconhecimento. Período de calma e estabilidade emocional com momentos felizes, demonstrando boa gestão do estresse e bem-estar mental.",
+    "RecomendacaoEsperada": "Mantenha os hábitos que estão trazendo tranquilidade. Continue com práticas de autocuidado e organização."
+  },
+  {
+    "Emocoes": "Estressado,Ansioso,Estressado,Ansioso,Estressado,Ansioso,Estressado",
+    "Textos": "Deadline crítico para projeto importante. Tarefas pendentes acumulando sem tempo. Pressão constante sobre resultados esperados. Conflitos no trabalho afetando produtividade. Tensão mental afetando qualidade de vida. Sobrecarga total sem perspectiva de alívio. Necessidade urgente de organização e priorização de tarefas.",
+    "EmocaoPredominante": "Estressado",
+    "ResumoEsperado": "Período de estresse intenso devido à sobrecarga e falta de organização. Período de ansiedade devido à sobrecarga de trabalho e pressão constante. Necessidade urgente de estratégias de gerenciamento de tempo, priorização e técnicas de relaxamento.",
+    "RecomendacaoEsperada": "Identifique as principais fontes de estresse e desenvolva estratégias de enfrentamento. Pratique exercícios físicos e técnicas de relaxamento regularmente."
+  },
+  {
+    "Emocoes": "Cansado,Cansado,Cansado,Feliz,Cansado,Feliz,Cansado",
+    "Textos": "Exausto fisicamente após semana intensa de trabalho. Falta de energia para atividades pessoais. Necessidade urgente de dormir e repousar adequadamente. Conquista importante no trabalho reconhecida. Sobrecarga total mas com resultados positivos. Esgotamento mental mas satisfeito. Necessidade de recuperação completa.",
+    "EmocaoPredominante": "Cansado",
+    "ResumoEsperado": "Semana marcada por fadiga extrema relacionada à sobrecarga de trabalho, mas com conquistas importantes. Período de esgotamento físico e mental, necessitando de pausa urgente e descanso adequado para recuperação completa.",
+    "RecomendacaoEsperada": "Priorize o descanso e o sono adequado. Considere revisar sua rotina para evitar sobrecarga e estabelecer limites saudáveis."
+  },
+  {
+    "Emocoes": "Feliz,Ansioso,Calmo,Feliz,Ansioso,Feliz,Calmo",
+    "Textos": "Sucesso importante no trabalho com reconhecimento. Preocupações sobre capacidade de manter desempenho. Momento de paz após conquista importante. Vitória significativa, porém incerteza sobre futuro. Conquistas importantes alcançadas. Dúvidas passageiras sobre próximos passos. Satisfação geral com ressalvas sobre expectativas.",
+    "EmocaoPredominante": "Feliz",
+    "ResumoEsperado": "Semana marcada por conquistas significativas e sentimentos de realização profissional. Considere técnicas de relaxamento e organização de tarefas para gerenciar ansiedade sobre expectativas futuras, mantendo foco nas realizações atuais.",
+    "RecomendacaoEsperada": "Continue mantendo atividades que trazem bem-estar. Considere registrar o que funcionou bem para replicar no futuro."
+  },
+  {
+    "Emocoes": "Calmo,Estressado,Calmo,Estressado,Calmo,Estressado,Calmo",
+    "Textos": "Dia tranquilo interrompido por problemas inesperados. Consegui me acalmar através de técnicas de respiração. Tensão momentânea mas controlada efetivamente. Serenidade restaurada após resolução de conflitos. Conflitos passageiros sem impacto duradouro. Paz recuperada através de comunicação assertiva. Equilíbrio mantido apesar de desafios.",
+    "EmocaoPredominante": "Calmo",
+    "ResumoEsperado": "Período de calma e estabilidade emocional, demonstrando capacidade de gerenciar estresse efetivamente mesmo em situações desafiadoras. Necessidade de estratégias de gerenciamento de estresse para lidar com interrupções e manter serenidade.",
+    "RecomendacaoEsperada": "Mantenha os hábitos que estão trazendo tranquilidade. Continue com práticas de autocuidado e organização."
+  },
+  {
+    "Emocoes": "Ansioso,Cansado,Ansioso,Cansado,Ansioso,Cansado,Ansioso",
+    "Textos": "Preocupações me mantendo acordado durante noites. Falta de sono adequado afetando energia e concentração. Dúvidas e cansaço mental dificultando tomada de decisões. Tensão constante sobre situações pendentes. Esgotamento físico e mental combinados. Incertezas sobre futuro profissional. Necessidade urgente de descanso e clareza mental.",
+    "EmocaoPredominante": "Ansioso",
+    "ResumoEsperado": "Período ansioso intenso com dificuldade de relaxar e descansar adequadamente. Priorize descanso adequado, gestão de energia e técnicas de gerenciamento de ansiedade para restaurar bem-estar físico e mental e clareza de pensamento.",
+    "RecomendacaoEsperada": "Pratique técnicas de respiração e mindfulness. Organize suas tarefas por prioridade e considere dividir objetivos grandes em etapas menores."
+  },
+  {
+    "Emocoes": "Estressado,Feliz,Estressado,Feliz,Estressado,Feliz,Estressado",
+    "Textos": "Conflitos no trabalho, mas consegui resolver através de diálogo construtivo. Sensação de vitória após superar desafio importante. Ainda há pressão sobre próximos projetos. Conquistas importantes reconhecidas pela equipe. Tensão intermitente mas gerenciável. Realizações que compensam o estresse. Sobrecarga parcial mas com progresso visível.",
+    "EmocaoPredominante": "Estressado",
+    "ResumoEsperado": "Semana estressante com tensões profissionais e desafios interpessoais, mas com resolução positiva de conflitos. Semana marcada por conquistas e sentimentos de realização, demonstrando capacidade de superar desafios apesar do estresse e manter progresso.",
+    "RecomendacaoEsperada": "Identifique as principais fontes de estresse e desenvolva estratégias de enfrentamento. Pratique exercícios físicos e técnicas de relaxamento regularmente."
+  },
+  {
+    "Emocoes": "Feliz,Cansado,Calmo,Feliz,Cansado,Feliz,Calmo",
+    "Textos": "Trabalho duro recompensado com promoção importante. Exausto mas extremamente satisfeito com resultados. Momento de paz após conquista importante. Conquistas significativas esta semana no trabalho. Fadiga física após esforço intenso mas recompensador. Realizações importantes que valeram esforço. Bem-estar geral apesar do cansaço.",
+    "EmocaoPredominante": "Feliz",
+    "ResumoEsperado": "Semana positiva com foco em produtividade e realizações profissionais importantes. Priorize descanso adequado e gestão de energia para manter produtividade e bem-estar, reconhecendo que o esforço foi recompensado com sucesso significativo.",
+    "RecomendacaoEsperada": "Continue mantendo atividades que trazem bem-estar. Considere registrar o que funcionou bem para replicar no futuro."
+  },
+  {
+    "Emocoes": "Calmo,Ansioso,Calmo,Ansioso,Calmo,Ansioso,Calmo",
+    "Textos": "Prática de mindfulness ajudou a manter equilíbrio emocional. Momentos de preocupação, mas consegui me acalmar rapidamente. Equilíbrio restaurado através de técnicas de respiração. Serenidade buscada e encontrada consistentemente. Dúvidas passageiras sobre decisões importantes. Paz interior mantida apesar de desafios. Tensão controlada efetivamente.",
+    "EmocaoPredominante": "Calmo",
+    "ResumoEsperado": "Semana serena com práticas consistentes de mindfulness e autoconhecimento. Considere técnicas de relaxamento e organização de tarefas para gerenciar ansiedade residual e manter serenidade, demonstrando boa gestão emocional.",
+    "RecomendacaoEsperada": "Mantenha os hábitos que estão trazendo tranquilidade. Continue com práticas de autocuidado e organização."
+  },
+  {
+    "Emocoes": "Cansado,Estressado,Cansado,Estressado,Cansado,Estressado,Cansado",
+    "Textos": "Sobrecarga física e mental sem perspectiva de alívio imediato. Problemas no trabalho acumulando sem solução efetiva. Necessidade urgente de pausa e recuperação completa. Esgotamento total afetando saúde física e mental. Conflitos constantes no ambiente profissional. Fadiga extrema impedindo funcionamento adequado. Tensão permanente sem estratégias efetivas de alívio.",
+    "EmocaoPredominante": "Cansado",
+    "ResumoEsperado": "Período de esgotamento físico e mental crítico, necessitando de pausa urgente e intervenção profissional. Necessidade de estratégias de gerenciamento de estresse, reavaliação do ambiente de trabalho e priorização de saúde física e mental para prevenir burnout e restaurar bem-estar.",
+    "RecomendacaoEsperada": "Priorize o descanso e o sono adequado. Considere revisar sua rotina para evitar sobrecarga e estabelecer limites saudáveis."
+  },
+  {
+    "Emocoes": "Feliz,Calmo,Feliz,Calmo,Feliz,Calmo,Feliz",
+    "Textos": "Semana equilibrada sem grandes pressões ou estresse excessivo. Produtividade mantida sem comprometer bem-estar. Momentos felizes e serenos com pessoas queridas. Boa gestão do tempo permitindo equilíbrio perfeito. Conquistas pessoais importantes alcançadas. Paz interior constante mantida. Bem-estar completo em todos os aspectos da vida.",
+    "EmocaoPredominante": "Feliz",
+    "ResumoEsperado": "Semana positiva com bem-estar geral e equilíbrio saudável entre responsabilidades e satisfação pessoal. Semana tranquila com momentos de descanso e serenidade. Boa gestão do tempo e bem-estar geral, demonstrando satisfação e harmonia na vida pessoal e profissional.",
+    "RecomendacaoEsperada": "Continue mantendo atividades que trazem bem-estar. Considere registrar o que funcionou bem para replicar no futuro."
+  },
+  {
+    "Emocoes": "Ansioso,Estressado,Ansioso,Estressado,Ansioso,Estressado,Ansioso",
+    "Textos": "Prazos apertados para múltiplos projetos simultâneos sem recursos adequados. Conflitos constantes com equipe e superiores afetando produtividade. Preocupações sobre decisões que afetam futuro profissional. Pressão em todos os aspectos da vida profissional. Tensão diária afetando saúde mental e física. Sobrecarga mental sem perspectiva de alívio. Necessidade urgente de organização e priorização de tarefas.",
+    "EmocaoPredominante": "Ansioso",
+    "ResumoEsperado": "Período de ansiedade intensa devido à sobrecarga de trabalho e pressão constante em múltiplas áreas. Necessidade urgente de estratégias de gerenciamento de estresse, organização de tarefas e técnicas de relaxamento para restaurar bem-estar físico e mental.",
+    "RecomendacaoEsperada": "Pratique técnicas de respiração e mindfulness. Organize suas tarefas por prioridade e considere dividir objetivos grandes em etapas menores."
+  },
+  {
+    "Emocoes": "Calmo,Cansado,Calmo,Cansado,Calmo,Cansado,Calmo",
+    "Textos": "Mente tranquila apesar do cansaço físico após atividades intensas. Descanso necessário para recuperação adequada do corpo. Paz interior mantida através de práticas de relaxamento. Fadiga presente mas gerenciável sem estresse. Serenidade buscada e encontrada consistentemente. Esgotamento parcial mas sem impacto emocional negativo. Equilíbrio necessário entre atividade e descanso.",
+    "EmocaoPredominante": "Calmo",
+    "ResumoEsperado": "Período de calma e estabilidade emocional, demonstrando boa gestão do cansaço físico. Priorize descanso adequado e gestão de energia para manter serenidade e bem-estar, reconhecendo necessidade de equilíbrio saudável entre atividade e recuperação.",
+    "RecomendacaoEsperada": "Mantenha os hábitos que estão trazendo tranquilidade. Continue com práticas de autocuidado e organização."
+  }
+]

@@ -1,0 +1,1078 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Mentalance</name>
+    </assembly>
+    <members>
+        <member name="T:Mentalance.Connection.AppDbContext">
+            <summary>
+            Contexto do Entity Framework para acesso ao banco de dados
+            </summary>
+        </member>
+        <member name="M:Mentalance.Connection.AppDbContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{Mentalance.Connection.AppDbContext})">
+            <summary>
+            Inicializa uma nova instância do AppDbContext
+            </summary>
+            <param name="options">Opções de configuração do DbContext</param>
+        </member>
+        <member name="P:Mentalance.Connection.AppDbContext.Usuario">
+            <summary>
+            Conjunto de entidades Usuario no banco de dados
+            </summary>
+        </member>
+        <member name="P:Mentalance.Connection.AppDbContext.Checkin">
+            <summary>
+            Conjunto de entidades Checkin no banco de dados
+            </summary>
+        </member>
+        <member name="P:Mentalance.Connection.AppDbContext.AnaliseSemanal">
+            <summary>
+            Conjunto de entidades AnaliseSemanal no banco de dados
+            </summary>
+        </member>
+        <member name="M:Mentalance.Connection.AppDbContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Configura o modelo de dados durante a criação do contexto
+            </summary>
+            <param name="modelBuilder">Construtor do modelo</param>
+        </member>
+        <member name="T:Mentalance.Controllers.AnaliseSemanalController">
+            <summary>
+            Controller responsável por gerenciar as análises semanais geradas automaticamente
+            </summary>
+        </member>
+        <member name="M:Mentalance.Controllers.AnaliseSemanalController.#ctor(Mentalance.Service.IAnaliseSemanalService,Microsoft.Extensions.Logging.ILogger{Mentalance.Controllers.AnaliseSemanalController})">
+            <summary>
+            Inicializa uma nova instância do AnaliseSemanalController
+            </summary>
+            <param name="service">Serviço de análises semanais</param>
+            <param name="logger">Logger para registro de eventos</param>
+        </member>
+        <member name="M:Mentalance.Controllers.AnaliseSemanalController.GetCheckin">
+            <summary>
+            Lista de todas as análises realizadas
+            </summary>
+        </member>
+        <member name="M:Mentalance.Controllers.AnaliseSemanalController.GetAnaliseSemanal(System.Int32)">
+            <summary>
+            Busca de análise pelo ID
+            </summary>
+            <param name="id">ID de AnaliseSemanal</param>
+        </member>
+        <member name="M:Mentalance.Controllers.AnaliseSemanalController.PostAnaliseSemanal(System.Int32)">
+            <summary>
+            Gera uma análise semanal para um usuário baseada nos check-ins dos últimos 7 dias
+            </summary>
+            <param name="idUsuario">ID do usuário para o qual a análise será gerada</param>
+        </member>
+        <member name="M:Mentalance.Controllers.AnaliseSemanalController.DeleteAnaliseSemanal(System.Int32)">
+            <summary>
+            Apagar Analise pelo ID
+            </summary>
+            <param name="id">ID da AnaliseSemanal</param>
+        </member>
+        <member name="T:Mentalance.Controllers.CheckinsController">
+            <summary>
+            Controller responsável por gerenciar os Checkins emocionais
+            </summary>
+        </member>
+        <member name="M:Mentalance.Controllers.CheckinsController.#ctor(Mentalance.Service.ICheckinService,Microsoft.Extensions.Logging.ILogger{Mentalance.Controllers.CheckinsController})">
+            <summary>
+            Inicializa uma nova instância do CheckinsController
+            </summary>
+            <param name="service">Serviço de check-ins</param>
+            <param name="logger">Logger para registro de eventos</param>
+        </member>
+        <member name="M:Mentalance.Controllers.CheckinsController.GetCheckin">
+            <summary>
+            Lista de todos os CheckIn's realizados
+            </summary>
+        </member>
+        <member name="M:Mentalance.Controllers.CheckinsController.GetCheckin(System.Int32)">
+            <summary>
+            Busca de CheckIn pelo ID
+            </summary>
+            <param name="id">ID do CheckIn</param>
+        </member>
+        <member name="M:Mentalance.Controllers.CheckinsController.PostCheckin(Mentalance.CheckinDto)">
+            <summary>
+            Realização de CheckIn
+            </summary>
+            <remarks>
+            Exemplo de requisição:
+            
+                POST/api/CheckIn
+                   {
+                        "idUsuario": 1,
+                        "emocao": "Feliz",
+                        "texto": "Hoje estou feliz porque consegui resolver o problema do cliente"
+                    }
+            
+                  Valores para emoção: Feliz, Cansado, Ansioso, Calmo, Estressado
+            </remarks>
+        </member>
+        <member name="M:Mentalance.Controllers.CheckinsController.PutCheckin(System.Int32,Mentalance.CheckinDto)">
+            <summary>
+            Alteração de CheckIn já realizado
+            </summary>
+            <remarks>
+            Exemplo de requisição:
+            
+                PUT/api/CheckIn
+                   {
+                        "idUsuario": 1,
+                        "emocao": "Feliz",
+                        "texto": "Hoje estou feliz porque consegui resolver o problema do cliente"
+                    }
+            
+                  Valores para emoção: Feliz, Cansado, Ansioso, Calmo, Estressado
+                  
+            </remarks>
+            <param name="id">ID do CheckIn</param>
+            <param name="checkinDto">Dados do check-in para atualização</param>
+        </member>
+        <member name="M:Mentalance.Controllers.CheckinsController.DeleteCheckin(System.Int32)">
+            <summary>
+            Apagar CheckIn pelo ID
+            </summary>
+            <param name="id">ID do CheckIn</param>
+        </member>
+        <member name="T:Mentalance.Controllers.HealthController">
+            <summary>
+            Controller responsável por verificar o status de saúde da aplicação e suas dependências
+            </summary>
+        </member>
+        <member name="M:Mentalance.Controllers.HealthController.#ctor(Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckService)">
+            <summary>
+            Inicializa uma nova instância do HealthController
+            </summary>
+            <param name="healthCheckService">Serviço de verificação de saúde da aplicação</param>
+        </member>
+        <member name="M:Mentalance.Controllers.HealthController.Get">
+            <summary>
+            Verifica o status de saúde da aplicação e suas dependências
+            </summary>
+            <returns>Status de saúde da aplicação com detalhes de todos os checks</returns>
+            <response code="200">Aplicação está saudável</response>
+            <response code="503">Aplicação está com problemas ou dependências indisponíveis</response>
+        </member>
+        <member name="T:Mentalance.Controllers.UsuariosController">
+            <summary>
+            Controller responsável por gerenciar os usuários do sistema e autenticação
+            </summary>
+        </member>
+        <member name="M:Mentalance.Controllers.UsuariosController.#ctor(Mentalance.Service.IUsuarioService,Microsoft.Extensions.Logging.ILogger{Mentalance.Controllers.UsuariosController})">
+            <summary>
+            Inicializa uma nova instância do UsuariosController
+            </summary>
+            <param name="service">Serviço de usuários</param>
+            <param name="logger">Logger para registro de eventos</param>
+        </member>
+        <member name="M:Mentalance.Controllers.UsuariosController.GetUsuario">
+            <summary>
+            Lista de todos os usuários cadastrados
+            </summary>
+        </member>
+        <member name="M:Mentalance.Controllers.UsuariosController.GetUsuario(System.Int32)">
+            <summary>
+            Busca de um usuário pelo ID
+            </summary>
+            <param name="id">ID do usuário</param>
+        </member>
+        <member name="M:Mentalance.Controllers.UsuariosController.PostUsuario(Mentalance.Dto.UsuarioDto)">
+            <summary>
+            Cadastro de um usuário
+            </summary>      
+            <remarks>
+            Exemplo de requisição:
+            
+                POST/api/Usuario
+                   {
+                        "nome": "Maria Silva",
+                        "email": "maria@empresa.com",
+                        "senha" : "123silva",
+                        "cargo": "Gerente de Marketing"
+                    }
+                  
+            </remarks>
+        </member>
+        <member name="M:Mentalance.Controllers.UsuariosController.PutUsuario(System.Int32,Mentalance.Dto.UsuarioDto)">
+            <summary>
+            Alteração de um usuário já cadastrado
+            </summary>
+            <remarks>
+            Exemplo de requisição:
+            
+                PUT/api/Usuario
+                   {
+                        "nome": "Maria Silva",
+                        "email": "maria@empresa.com",
+                        "senha" : "123silva",
+                        "cargo": "Gerente de Marketing"
+                    }
+                  
+            </remarks>
+            <param name="id">ID do usuário</param>
+            <param name="usuarioDto">Dados do usuário para atualização</param>
+        </member>
+        <member name="M:Mentalance.Controllers.UsuariosController.DeleteUsuario(System.Int32)">
+            <summary>
+            Apagar um usuário pelo ID
+            </summary>
+            <param name="id">ID do usuário</param>
+        </member>
+        <member name="M:Mentalance.Controllers.UsuariosController.Login(Mentalance.Dto.LoginDto)">
+            <summary>
+            Realiza login do usuário
+            </summary>
+        </member>
+        <member name="T:Mentalance.Converters.EmocaoEnumJsonConverter">
+            <summary>
+            Conversor customizado para EmocaoEnum que aceita variações de gênero
+            (ex: "Cansada" -> Cansado, "Cansado" -> Cansado)
+            </summary>
+        </member>
+        <member name="M:Mentalance.Converters.EmocaoEnumJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            Lê e converte uma string JSON para EmocaoEnum, aceitando variações de gênero
+            </summary>
+            <param name="reader">Leitor JSON</param>
+            <param name="typeToConvert">Tipo a ser convertido</param>
+            <param name="options">Opções do serializador</param>
+            <returns>Valor do enum EmocaoEnum correspondente</returns>
+        </member>
+        <member name="M:Mentalance.Converters.EmocaoEnumJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Mentalance.API.Models.EmocaoEnum,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            Escreve um valor EmocaoEnum como string JSON
+            </summary>
+            <param name="writer">Escritor JSON</param>
+            <param name="value">Valor do enum a ser escrito</param>
+            <param name="options">Opções do serializador</param>
+        </member>
+        <member name="T:Mentalance.CheckinDto">
+            <summary>
+            DTO (Data Transfer Object) para criação e atualização de check-ins
+            </summary>
+        </member>
+        <member name="P:Mentalance.CheckinDto.IdUsuario">
+            <summary>
+            Identificador do usuário que está realizando o check-in
+            </summary>
+        </member>
+        <member name="P:Mentalance.CheckinDto.Emoção">
+            <summary>
+            Emoção registrada pelo usuário no check-in
+            </summary>
+        </member>
+        <member name="P:Mentalance.CheckinDto.Texto">
+            <summary>
+            Texto descritivo do check-in fornecido pelo usuário
+            </summary>
+        </member>
+        <member name="T:Mentalance.Dto.LoginDto">
+            <summary>
+            DTO (Data Transfer Object) para autenticação de usuários
+            </summary>
+        </member>
+        <member name="P:Mentalance.Dto.LoginDto.Email">
+            <summary>
+            Endereço de e-mail do usuário
+            </summary>
+        </member>
+        <member name="P:Mentalance.Dto.LoginDto.Senha">
+            <summary>
+            Senha do usuário
+            </summary>
+        </member>
+        <member name="T:Mentalance.Dto.UsuarioDto">
+            <summary>
+            DTO (Data Transfer Object) para criação e atualização de usuários
+            </summary>
+        </member>
+        <member name="P:Mentalance.Dto.UsuarioDto.Nome">
+            <summary>
+            Nome completo do usuário
+            </summary>
+        </member>
+        <member name="P:Mentalance.Dto.UsuarioDto.Email">
+            <summary>
+            Endereço de e-mail do usuário (usado para login)
+            </summary>
+        </member>
+        <member name="P:Mentalance.Dto.UsuarioDto.Senha">
+            <summary>
+            Senha do usuário
+            </summary>
+        </member>
+        <member name="P:Mentalance.Dto.UsuarioDto.Cargo">
+            <summary>
+            Cargo/função do usuário no sistema
+            </summary>
+        </member>
+        <member name="T:Mentalance.Migrations.InitialCreate">
+            <inheritdoc />
+        </member>
+        <member name="M:Mentalance.Migrations.InitialCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Mentalance.Migrations.InitialCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Mentalance.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Mentalance.Migrations.AdicionarRecomendacaoAnaliseSemanal">
+            <inheritdoc />
+        </member>
+        <member name="M:Mentalance.Migrations.AdicionarRecomendacaoAnaliseSemanal.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Mentalance.Migrations.AdicionarRecomendacaoAnaliseSemanal.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Mentalance.Migrations.AdicionarRecomendacaoAnaliseSemanal.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Mentalance.ML.Data.AnaliseML">
+            <summary>
+            Classe que representa a predição do modelo ML.NET
+            </summary>
+        </member>
+        <member name="P:Mentalance.ML.Data.AnaliseML.Resumo">
+            <summary>
+            Resumo textual gerado pelo modelo ML.NET
+            </summary>
+        </member>
+        <member name="P:Mentalance.ML.Data.AnaliseML.Recomendacao">
+            <summary>
+            Recomendação baseada na análise dos checkins
+            </summary>
+        </member>
+        <member name="T:Mentalance.ML.Data.RecomendacaoML">
+            <summary>
+            Classe que representa a predição de recomendação do modelo ML.NET
+            </summary>
+        </member>
+        <member name="P:Mentalance.ML.Data.RecomendacaoML.Recomendacao">
+            <summary>
+            Recomendação textual gerada pelo modelo ML.NET
+            </summary>
+        </member>
+        <member name="T:Mentalance.ML.Data.SemanaAnalise">
+            <summary>
+            Classe de entrada para o modelo ML.NET representando uma semana agregada
+            Contém múltiplos checkins agregados (emoções e textos combinados)
+            </summary>
+        </member>
+        <member name="P:Mentalance.ML.Data.SemanaAnalise.Emocoes">
+            <summary>
+            Todas as emoções da semana combinadas (ex: "Feliz,Ansioso,Calmo")
+            </summary>
+        </member>
+        <member name="P:Mentalance.ML.Data.SemanaAnalise.Textos">
+            <summary>
+            Todos os textos da semana combinados (ex: "Dia produtivo. Muitas tarefas. Dia tranquilo.")
+            </summary>
+        </member>
+        <member name="P:Mentalance.ML.Data.SemanaAnalise.EmocaoPredominante">
+            <summary>
+            Emoção predominante calculada estatisticamente
+            </summary>
+        </member>
+        <member name="P:Mentalance.ML.Data.SemanaAnalise.ResumoEsperado">
+            <summary>
+            Label para treinamento: resumo textual esperado baseado em regras
+            </summary>
+        </member>
+        <member name="P:Mentalance.ML.Data.SemanaAnalise.RecomendacaoEsperada">
+            <summary>
+            Label para treinamento: recomendação esperada baseada em regras
+            </summary>
+        </member>
+        <member name="M:Mentalance.ML.Service.IMLService.GerarResumoAsync(System.Int32)">
+            <summary>
+            Gera análise/resumo textual com base nos checkins de uma semana (7 dias)
+            Agrega múltiplas emoções e textos para gerar um resumo do que foi predominante e como melhorar
+            </summary>
+            <param name="usuarioId">ID do usuário para buscar checkins dos últimos 7 dias</param>
+            <returns>Predição com resumo textual gerado</returns>
+        </member>
+        <member name="T:Mentalance.ML.Service.MLService">
+            <summary>
+            Serviço de Machine Learning para geração de análises e recomendações baseadas em check-ins
+            </summary>
+        </member>
+        <member name="M:Mentalance.ML.Service.MLService.#ctor(Mentalance.Repository.ICheckinRepository)">
+            <summary>
+            Inicializa uma nova instância do MLService
+            </summary>
+            <param name="checkinRepository">Repositório de check-ins para buscar dados de treinamento</param>
+        </member>
+        <member name="M:Mentalance.ML.Service.MLService.GerarResumoAsync(System.Int32)">
+            <summary>
+            Gera análise/resumo textual com base nos checkins de uma semana (7 dias)
+            </summary>
+            <param name="usuarioId">ID do usuário</param>
+            <returns>Predição com resumo textual gerado</returns>
+        </member>
+        <member name="M:Mentalance.ML.Service.MLService.CalcularEmocaoPredominante(System.Collections.Generic.List{Mentalance.Models.Checkin})">
+            <summary>
+            Calcula a emoção predominante em uma lista de checkins
+            </summary>
+        </member>
+        <member name="M:Mentalance.ML.Service.MLService.AnalisarComFallback(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            Analisa usando apenas regras (fallback quando o modelo não está disponível)
+            Gera resumo e recomendação juntos
+            </summary>
+        </member>
+        <member name="M:Mentalance.ML.Service.MLService.GerarResumoEsperadoSemanal(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            Gera resumo esperado baseado em regras para uma semana agregada (múltiplas emoções e textos)
+            </summary>
+        </member>
+        <member name="M:Mentalance.ML.Service.MLService.GerarRecomendacao(System.String)">
+            <summary>
+            Gera recomendação baseada na emoção predominante
+            </summary>
+        </member>
+        <member name="M:Mentalance.ML.Service.MLService.CarregarDadosTreino">
+            <summary>
+            Carrega dados para treinamento do modelo
+            </summary>
+        </member>
+        <member name="T:Mentalance.Models.AnaliseSemanal">
+            <summary>
+            Representa uma análise semanal gerada automaticamente baseada nos check-ins do usuário
+            </summary>
+        </member>
+        <member name="P:Mentalance.Models.AnaliseSemanal.IdAnalise">
+            <summary>
+            Identificador único da análise semanal
+            </summary>
+        </member>
+        <member name="P:Mentalance.Models.AnaliseSemanal.IdUsuario">
+            <summary>
+            Identificador do usuário para o qual a análise foi gerada
+            </summary>
+        </member>
+        <member name="P:Mentalance.Models.AnaliseSemanal.SemanaReferencia">
+            <summary>
+            Período de referência da análise (ex: "Semana 01/01/2024 a 07/01/2024")
+            </summary>
+        </member>
+        <member name="P:Mentalance.Models.AnaliseSemanal.EmocaoPredominante">
+            <summary>
+            Emoção que mais apareceu nos check-ins da semana
+            </summary>
+        </member>
+        <member name="P:Mentalance.Models.AnaliseSemanal.Resumo">
+            <summary>
+            Resumo textual gerado por ML sobre o estado emocional da semana
+            </summary>
+        </member>
+        <member name="P:Mentalance.Models.AnaliseSemanal.Recomendacao">
+            <summary>
+            Recomendação personalizada gerada por ML baseada na análise da semana
+            </summary>
+        </member>
+        <member name="T:Mentalance.Models.Checkin">
+            <summary>
+            Representa um check-in emocional realizado por um usuário
+            </summary>
+        </member>
+        <member name="P:Mentalance.Models.Checkin.IdCheckin">
+            <summary>
+            Identificador único do check-in
+            </summary>
+        </member>
+        <member name="P:Mentalance.Models.Checkin.IdUsuario">
+            <summary>
+            Identificador do usuário que realizou o check-in
+            </summary>
+        </member>
+        <member name="P:Mentalance.Models.Checkin.DataCheckin">
+            <summary>
+            Data e hora em que o check-in foi realizado
+            </summary>
+        </member>
+        <member name="P:Mentalance.Models.Checkin.Emoção">
+            <summary>
+            Emoção registrada pelo usuário no check-in
+            </summary>
+        </member>
+        <member name="P:Mentalance.Models.Checkin.Texto">
+            <summary>
+            Texto descritivo do check-in fornecido pelo usuário
+            </summary>
+        </member>
+        <member name="P:Mentalance.Models.Checkin.AnáliseSentimento">
+            <summary>
+            Análise de sentimento gerada automaticamente (positivo, neutro, negativo)
+            </summary>
+        </member>
+        <member name="P:Mentalance.Models.Checkin.RespostaGerada">
+            <summary>
+            Resposta personalizada gerada automaticamente baseada na emoção e texto
+            </summary>
+        </member>
+        <member name="T:Mentalance.Models.Usuario">
+            <summary>
+            Representa um usuário do sistema Mentalance
+            </summary>
+        </member>
+        <member name="P:Mentalance.Models.Usuario.IdUsuario">
+            <summary>
+            Identificador único do usuário
+            </summary>
+        </member>
+        <member name="P:Mentalance.Models.Usuario.Nome">
+            <summary>
+            Nome completo do usuário
+            </summary>
+        </member>
+        <member name="P:Mentalance.Models.Usuario.Email">
+            <summary>
+            Endereço de e-mail do usuário (usado para login)
+            </summary>
+        </member>
+        <member name="P:Mentalance.Models.Usuario.Senha">
+            <summary>
+            Senha do usuário (armazenada em texto plano - considerar hash em produção)
+            </summary>
+        </member>
+        <member name="P:Mentalance.Models.Usuario.Cargo">
+            <summary>
+            Cargo/função do usuário no sistema
+            </summary>
+        </member>
+        <member name="P:Mentalance.Models.Usuario.DataCadastro">
+            <summary>
+            Data e hora de cadastro do usuário no sistema
+            </summary>
+        </member>
+        <member name="T:Mentalance.API.Models.EmocaoEnum">
+            <summary>
+            Enumeração que representa as emoções disponíveis para registro em check-ins
+            </summary>
+        </member>
+        <member name="T:Mentalance.Repository.AnaliseSemanalRepository">
+            <summary>
+            Implementação do repositório para a entidade AnaliseSemanal
+            Responsável apenas pelo acesso direto aos dados no banco
+            </summary>
+        </member>
+        <member name="M:Mentalance.Repository.AnaliseSemanalRepository.#ctor(Mentalance.Connection.AppDbContext,Microsoft.Extensions.Logging.ILogger{Mentalance.Repository.AnaliseSemanalRepository})">
+            <summary>
+            Inicializa uma nova instância do AnaliseSemanalRepository
+            </summary>
+            <param name="context">Contexto do banco de dados</param>
+            <param name="logger">Logger para registro de eventos</param>
+        </member>
+        <member name="M:Mentalance.Repository.AnaliseSemanalRepository.GetAllAsync">
+            <summary>
+            Busca todas as análises pelo ID
+            </summary>
+        </member>
+        <member name="M:Mentalance.Repository.AnaliseSemanalRepository.GetByIdAsync(System.Int32)">
+            <summary>
+            Busca uma análise pelo ID
+            </summary>
+        </member>
+        <member name="M:Mentalance.Repository.AnaliseSemanalRepository.AddAsync(Mentalance.Models.AnaliseSemanal)">
+            <summary>
+            Adiciona uma nova análise ao banco de dados
+            </summary>
+        </member>
+        <member name="M:Mentalance.Repository.AnaliseSemanalRepository.DeleteAsync(System.Int32)">
+            <summary>
+            Remove uma análise do banco de dados pelo ID
+            </summary>
+            <returns>True se a análise foi removida, False se não foi encontrada</returns>
+        </member>
+        <member name="M:Mentalance.Repository.AnaliseSemanalRepository.ExisteAsync(System.Int32)">
+            <summary>
+            Verifica se uma análise existe pelo ID
+            </summary>
+        </member>
+        <member name="T:Mentalance.Repository.CheckinRepository">
+            <summary>
+            Implementação do repositório para a entidade Checkin
+            Responsável apenas pelo acesso direto aos dados no banco
+            </summary>
+        </member>
+        <member name="M:Mentalance.Repository.CheckinRepository.#ctor(Mentalance.Connection.AppDbContext,Microsoft.Extensions.Logging.ILogger{Mentalance.Repository.CheckinRepository})">
+            <summary>
+            Inicializa uma nova instância do CheckinRepository
+            </summary>
+            <param name="context">Contexto do banco de dados</param>
+            <param name="logger">Logger para registro de eventos</param>
+        </member>
+        <member name="M:Mentalance.Repository.CheckinRepository.GetAllAsync">
+            <summary>
+            Busca todos os checkins realizados
+            </summary>
+        </member>
+        <member name="M:Mentalance.Repository.CheckinRepository.GetByUsuarioEPeriodoAsync(System.Int32)">
+            <summary>
+            Busca checkins de um usuário em um período específico
+            </summary>
+        </member>
+        <member name="M:Mentalance.Repository.CheckinRepository.GetByIdAsync(System.Int32)">
+            <summary>
+            Busca um checkin pelo ID
+            </summary>
+        </member>
+        <member name="M:Mentalance.Repository.CheckinRepository.AddAsync(Mentalance.Models.Checkin)">
+            <summary>
+            Adiciona um novo checkin ao banco de dados
+            </summary>
+        </member>
+        <member name="M:Mentalance.Repository.CheckinRepository.UpdateAsync(Mentalance.Models.Checkin)">
+            <summary>
+            Atualiza um checkin existente
+            </summary>
+        </member>
+        <member name="M:Mentalance.Repository.CheckinRepository.DeleteAsync(System.Int32)">
+            <summary>
+            Remove um checkin do banco de dados pelo ID
+            </summary>
+            <returns>True se o checkin foi removido, False se não foi encontrado</returns>
+        </member>
+        <member name="M:Mentalance.Repository.CheckinRepository.CheckinExisteAsync(System.Int32)">
+            <summary>
+            Verifica se um checkin existe pelo ID
+            </summary>
+        </member>
+        <member name="T:Mentalance.Repository.IAnaliseSemanalRepository">
+            <summary>
+            Interface que define os contratos de acesso a dados para a entidade AnaliseSemanal
+            </summary>
+        </member>
+        <member name="M:Mentalance.Repository.IAnaliseSemanalRepository.GetAllAsync">
+            <summary>
+            Busca todas as análises realizadas
+            </summary>
+        </member>
+        <member name="M:Mentalance.Repository.IAnaliseSemanalRepository.GetByIdAsync(System.Int32)">
+            <summary>
+            Busca uma analise pelo ID
+            </summary>
+            <param name="id">ID do usuário</param>
+        </member>
+        <member name="M:Mentalance.Repository.IAnaliseSemanalRepository.AddAsync(Mentalance.Models.AnaliseSemanal)">
+            <summary>
+            Adiciona uma análise semanal ao banco de dados
+            </summary>
+            <param name="analiseSemanal">Objeto AnaliseSemanal a ser adicionado</param>
+        </member>
+        <member name="M:Mentalance.Repository.IAnaliseSemanalRepository.DeleteAsync(System.Int32)">
+            <summary>
+            Remove uma análise do banco de dados pelo ID
+            </summary>
+            <param name="id">ID do usuário a ser removido</param>
+        </member>
+        <member name="M:Mentalance.Repository.IAnaliseSemanalRepository.ExisteAsync(System.Int32)">
+            <summary>
+            Verifica se uma análise existe pelo ID
+            </summary>
+            <param name="id">ID do usuário</param>
+        </member>
+        <member name="T:Mentalance.Repository.ICheckinRepository">
+            <summary>
+            Interface que define os contratos de acesso a dados para a entidade Checkin
+            </summary>
+        </member>
+        <member name="M:Mentalance.Repository.ICheckinRepository.GetAllAsync">
+            <summary>
+            Busca todos os checkins realizados
+            </summary>
+        </member>
+        <member name="M:Mentalance.Repository.ICheckinRepository.GetByUsuarioEPeriodoAsync(System.Int32)">
+            <summary>
+            Busca check-ins de um usuário em um período específico
+            </summary>
+            <param name="idUsuario">ID do usuário</param>
+            <param name="dataInicio">Data de início</param>
+            <param name="dataFim">Data de fim</param>
+        </member>
+        <member name="M:Mentalance.Repository.ICheckinRepository.GetByIdAsync(System.Int32)">
+            <summary>
+            Busca um checkin pelo ID
+            </summary>
+            <param name="id">ID do Checkin</param>
+        </member>
+        <member name="M:Mentalance.Repository.ICheckinRepository.AddAsync(Mentalance.Models.Checkin)">
+            <summary>
+            Adiciona um novo checkin ao banco de dados
+            </summary>
+            <param name="checkin">Objeto Checkin a ser adicionado</param>
+        </member>
+        <member name="M:Mentalance.Repository.ICheckinRepository.UpdateAsync(Mentalance.Models.Checkin)">
+            <summary>
+            Atualiza um Checkin existente
+            </summary>
+            <param name="checkin">Objeto Checkin com dados atualizados</param>
+        </member>
+        <member name="M:Mentalance.Repository.ICheckinRepository.DeleteAsync(System.Int32)">
+            <summary>
+            Remove um Checkin do banco de dados pelo ID
+            </summary>
+            <param name="id">ID do Checkin a ser removido</param>
+        </member>
+        <member name="M:Mentalance.Repository.ICheckinRepository.CheckinExisteAsync(System.Int32)">
+            <summary>
+            Verifica se um checkin existe pelo ID
+            </summary>
+            <param name="id">ID do Checkin</param>
+        </member>
+        <member name="T:Mentalance.Repository.IUsuarioRepository">
+            <summary>
+            Interface que define os contratos de acesso a dados para a entidade Usuario
+            </summary>
+        </member>
+        <member name="M:Mentalance.Repository.IUsuarioRepository.GetAllAsync">
+            <summary>
+            Busca todos os usuários cadastrados
+            </summary>
+        </member>
+        <member name="M:Mentalance.Repository.IUsuarioRepository.GetByIdAsync(System.Int32)">
+            <summary>
+            Busca um usuário pelo ID
+            </summary>
+            <param name="id">ID do usuário</param>
+        </member>
+        <member name="M:Mentalance.Repository.IUsuarioRepository.GetByEmailAsync(System.String)">
+            <summary>
+            Busca um usuário pelo e-mail
+            </summary>
+            <param name="email">E-mail do usuário</param>
+        </member>
+        <member name="M:Mentalance.Repository.IUsuarioRepository.AddAsync(Mentalance.Models.Usuario)">
+            <summary>
+            Adiciona um novo usuário ao banco de dados
+            </summary>
+            <param name="usuario">Objeto Usuario a ser adicionado</param>
+        </member>
+        <member name="M:Mentalance.Repository.IUsuarioRepository.UpdateAsync(Mentalance.Models.Usuario)">
+            <summary>
+            Atualiza um usuário existente
+            </summary>
+            <param name="usuario">Objeto Usuario com dados atualizados</param>
+        </member>
+        <member name="M:Mentalance.Repository.IUsuarioRepository.DeleteAsync(System.Int32)">
+            <summary>
+            Remove um usuário do banco de dados pelo ID
+            </summary>
+            <param name="id">ID do usuário a ser removido</param>
+        </member>
+        <member name="M:Mentalance.Repository.IUsuarioRepository.ExisteAsync(System.Int32)">
+            <summary>
+            Verifica se um usuário existe pelo ID
+            </summary>
+            <param name="id">ID do usuário</param>
+        </member>
+        <member name="M:Mentalance.Repository.IUsuarioRepository.EmailExisteAsync(System.String)">
+            <summary>
+            Verifica se já existe um usuário com o e-mail informado
+            </summary>
+            <param name="email">E-mail a ser verificado</param>
+        </member>
+        <member name="T:Mentalance.Repository.UsuarioRepository">
+            <summary>
+            Implementação do repositório para a entidade Usuario
+            Responsável apenas pelo acesso direto aos dados no banco
+            </summary>
+        </member>
+        <member name="M:Mentalance.Repository.UsuarioRepository.#ctor(Mentalance.Connection.AppDbContext,Microsoft.Extensions.Logging.ILogger{Mentalance.Repository.UsuarioRepository})">
+            <summary>
+            Inicializa uma nova instância do UsuarioRepository
+            </summary>
+            <param name="context">Contexto do banco de dados</param>
+            <param name="logger">Logger para registro de eventos</param>
+        </member>
+        <member name="M:Mentalance.Repository.UsuarioRepository.GetAllAsync">
+            <summary>
+            Busca todos os usuários cadastrados
+            </summary>
+        </member>
+        <member name="M:Mentalance.Repository.UsuarioRepository.GetByIdAsync(System.Int32)">
+            <summary>
+            Busca um usuário pelo ID
+            </summary>
+        </member>
+        <member name="M:Mentalance.Repository.UsuarioRepository.GetByEmailAsync(System.String)">
+            <summary>
+            Busca um usuário pelo e-mail
+            </summary>
+        </member>
+        <member name="M:Mentalance.Repository.UsuarioRepository.AddAsync(Mentalance.Models.Usuario)">
+            <summary>
+            Adiciona um novo usuário ao banco de dados
+            </summary>
+        </member>
+        <member name="M:Mentalance.Repository.UsuarioRepository.UpdateAsync(Mentalance.Models.Usuario)">
+            <summary>
+            Atualiza um usuário existente
+            </summary>
+        </member>
+        <member name="M:Mentalance.Repository.UsuarioRepository.DeleteAsync(System.Int32)">
+            <summary>
+            Remove um usuário do banco de dados pelo ID
+            </summary>
+            <returns>True se o usuário foi removido, False se não foi encontrado</returns>
+        </member>
+        <member name="M:Mentalance.Repository.UsuarioRepository.ExisteAsync(System.Int32)">
+            <summary>
+            Verifica se um usuário existe pelo ID
+            </summary>
+        </member>
+        <member name="M:Mentalance.Repository.UsuarioRepository.EmailExisteAsync(System.String)">
+            <summary>
+            Verifica se já existe um usuário com o e-mail informado
+            </summary>
+        </member>
+        <member name="T:Mentalance.Service.AnaliseSemanalService">
+            <summary>
+            Implementação do serviço para a entidade AnaliseSemanal
+            Contém a lógica de negócio e validações
+            </summary>
+        </member>
+        <member name="M:Mentalance.Service.AnaliseSemanalService.#ctor(Mentalance.Repository.IAnaliseSemanalRepository,Mentalance.Repository.ICheckinRepository,Mentalance.ML.Service.IMLService,Microsoft.Extensions.Logging.ILogger{Mentalance.Service.AnaliseSemanalService})">
+            <summary>
+            Inicializa uma nova instância do AnaliseSemanalService
+            </summary>
+            <param name="repository">Repositório de análises semanais</param>
+            <param name="checkinRepository">Repositório de check-ins</param>
+            <param name="mlService">Serviço de machine learning</param>
+            <param name="logger">Logger para registro de eventos</param>
+        </member>
+        <member name="M:Mentalance.Service.AnaliseSemanalService.GetAllAsync">
+            <summary>
+            Retorna todas as análises realizadas
+            </summary>
+        </member>
+        <member name="M:Mentalance.Service.AnaliseSemanalService.GetByIdAsync(System.Int32)">
+            <summary>
+            Busca análise semanal por ID
+            </summary>
+        </member>
+        <member name="M:Mentalance.Service.AnaliseSemanalService.GerarAnaliseSemanalAsync(System.Int32)">
+            <summary>
+            Gera uma análise semanal usando ML.NET baseada nos últimos 7 dias
+            </summary>
+        </member>
+        <member name="M:Mentalance.Service.AnaliseSemanalService.DeleteAsync(System.Int32)">
+            <summary>
+            Remove uma análise do sistema
+            </summary>
+        </member>
+        <member name="M:Mentalance.Service.AnaliseSemanalService.CalcularEmocaoPredominante(System.Collections.Generic.List{Mentalance.Models.Checkin})">
+            <summary>
+            Calcula a emoção predominante em uma lista de checkins
+            </summary>
+        </member>
+        <member name="T:Mentalance.Service.CheckinService">
+            <summary>
+            Implementação do serviço para a entidade Checkin
+            Contém a lógica de negócio e validações
+            </summary>
+        </member>
+        <member name="M:Mentalance.Service.CheckinService.#ctor(Mentalance.Repository.ICheckinRepository,Mentalance.Repository.IUsuarioRepository,Microsoft.Extensions.Logging.ILogger{Mentalance.Service.CheckinService})">
+            <summary>
+            Inicializa uma nova instância do CheckinService
+            </summary>
+            <param name="repository">Repositório de check-ins</param>
+            <param name="usuarioRepository">Repositório de usuários</param>
+            <param name="logger">Logger para registro de eventos</param>
+        </member>
+        <member name="M:Mentalance.Service.CheckinService.GetAllAsync">
+            <summary>
+            Retorna todos os checkins realizados
+            </summary>
+        </member>
+        <member name="M:Mentalance.Service.CheckinService.GetByIdAsync(System.Int32)">
+            <summary>
+            Busca um checkin pelo ID
+            </summary>
+        </member>
+        <member name="M:Mentalance.Service.CheckinService.CreateAsync(Mentalance.CheckinDto)">
+            <summary>
+            Cria um novo checkin após validar os dados
+            </summary>
+        </member>
+        <member name="M:Mentalance.Service.CheckinService.UpdateAsync(System.Int32,Mentalance.CheckinDto)">
+            <summary>
+            Atualiza um checkin existente
+            </summary>
+        </member>
+        <member name="M:Mentalance.Service.CheckinService.DeleteAsync(System.Int32)">
+            <summary>
+            Remove um checkin do sistema
+            </summary>
+        </member>
+        <member name="M:Mentalance.Service.CheckinService.ClassificarSentimento(Mentalance.API.Models.EmocaoEnum)">
+            <summary>
+            Classifica o sentimento baseado na emoção informada
+            </summary>
+        </member>
+        <member name="M:Mentalance.Service.CheckinService.GerarResposta(Mentalance.API.Models.EmocaoEnum,System.String,System.String)">
+            <summary>
+            Gera uma resposta personalizada baseada na emoção, sentimento e texto do usuário
+            </summary>
+        </member>
+        <member name="M:Mentalance.Service.CheckinService.ContemPalavras(System.String,System.String[])">
+            <summary>
+            Verifica se o texto contém alguma das palavras-chave fornecidas
+            </summary>
+        </member>
+        <member name="M:Mentalance.Service.IAnaliseSemanalService.GetAllAsync">
+            <summary>
+            Retorna todas as análises realizadas
+            </summary>
+        </member>
+        <member name="M:Mentalance.Service.IAnaliseSemanalService.GerarAnaliseSemanalAsync(System.Int32)">
+            <summary>
+            Gera uma análise semanal usando ML.NET baseada nos últimos 7 dias
+            </summary>
+            <param name="idUsuario">ID do usuário</param>
+        </member>
+        <member name="M:Mentalance.Service.IAnaliseSemanalService.GetByIdAsync(System.Int32)">
+            <summary>
+            Busca análise semanal por ID
+            </summary>
+            <param name="id">ID da análise</param>
+        </member>
+        <member name="M:Mentalance.Service.IAnaliseSemanalService.DeleteAsync(System.Int32)">
+            <summary>
+            Remove ua analise do sistema
+            </summary>
+            <param name="id">ID da análise a ser removido</param>
+        </member>
+        <member name="T:Mentalance.Service.ICheckinService">
+            <summary>
+            Interface que define os contratos de lógica de negócio para a entidade Checkin
+            </summary>
+        </member>
+        <member name="M:Mentalance.Service.ICheckinService.GetAllAsync">
+            <summary>
+            Retorna todos os checkins realizados
+            </summary>
+        </member>
+        <member name="M:Mentalance.Service.ICheckinService.GetByIdAsync(System.Int32)">
+            <summary>
+            Busca um checkin pelo ID
+            </summary>
+            <param name="id">ID do checkin</param>
+        </member>
+        <member name="M:Mentalance.Service.ICheckinService.CreateAsync(Mentalance.CheckinDto)">
+            <summary>
+            Cria um novo checkin após validar os dados
+            </summary>
+            <param name="checkin">Objeto Checkin a ser criado</param>
+        </member>
+        <member name="M:Mentalance.Service.ICheckinService.UpdateAsync(System.Int32,Mentalance.CheckinDto)">
+            <summary>
+            Atualiza um checkin existente
+            </summary>
+            <param name="id">ID do checkin a ser atualizado</param>
+            <param name="checkin">Objeto checkin com dados atualizados</param>
+        </member>
+        <member name="M:Mentalance.Service.ICheckinService.DeleteAsync(System.Int32)">
+            <summary>
+            Remove um checkin do sistema
+            </summary>
+            <param name="id">ID do checkin a ser removido</param>
+        </member>
+        <member name="T:Mentalance.Service.IUsuarioService">
+            <summary>
+            Interface que define os contratos de lógica de negócio para a entidade Usuario
+            </summary>
+        </member>
+        <member name="M:Mentalance.Service.IUsuarioService.GetAllAsync">
+            <summary>
+            Retorna todos os usuários cadastrados
+            </summary>
+        </member>
+        <member name="M:Mentalance.Service.IUsuarioService.GetByIdAsync(System.Int32)">
+            <summary>
+            Busca um usuário pelo ID
+            </summary>
+            <param name="id">ID do usuário</param>
+        </member>
+        <member name="M:Mentalance.Service.IUsuarioService.CreateAsync(Mentalance.Dto.UsuarioDto)">
+            <summary>
+            Cria um novo usuário após validar os dados
+            </summary>
+            <param name="usuario">Objeto Usuario a ser criado</param>
+        </member>
+        <member name="M:Mentalance.Service.IUsuarioService.UpdateAsync(System.Int32,Mentalance.Dto.UsuarioDto)">
+            <summary>
+            Atualiza um usuário existente
+            </summary>
+            <param name="id">ID do usuário a ser atualizado</param>
+            <param name="usuario">Objeto Usuario com dados atualizados</param>
+        </member>
+        <member name="M:Mentalance.Service.IUsuarioService.DeleteAsync(System.Int32)">
+            <summary>
+            Remove um usuário do sistema
+            </summary>
+            <param name="id">ID do usuário a ser removido</param>
+        </member>
+        <member name="M:Mentalance.Service.IUsuarioService.LoginAsync(Mentalance.Dto.LoginDto)">
+            <summary>
+            Realiza o login de um usuário
+            </summary>
+            <param name="loginDto">Dados de login (email e senha)</param>
+            <returns>Usuário autenticado ou null se credenciais inválidas</returns>
+        </member>
+        <member name="T:Mentalance.Service.UsuarioService">
+            <summary>
+            Implementação do serviço para a entidade Usuario
+            Contém a lógica de negócio e validações
+            </summary>
+        </member>
+        <member name="M:Mentalance.Service.UsuarioService.#ctor(Mentalance.Repository.IUsuarioRepository,Microsoft.Extensions.Logging.ILogger{Mentalance.Service.UsuarioService})">
+            <summary>
+            Inicializa uma nova instância do UsuarioService
+            </summary>
+            <param name="repository">Repositório de usuários</param>
+            <param name="logger">Logger para registro de eventos</param>
+        </member>
+        <member name="M:Mentalance.Service.UsuarioService.GetAllAsync">
+            <summary>
+            Retorna todos os usuários cadastrados
+            </summary>
+        </member>
+        <member name="M:Mentalance.Service.UsuarioService.GetByIdAsync(System.Int32)">
+            <summary>
+            Busca um usuário pelo ID
+            </summary>
+        </member>
+        <member name="M:Mentalance.Service.UsuarioService.CreateAsync(Mentalance.Dto.UsuarioDto)">
+            <summary>
+            Cria um novo usuário após validar os dados
+            </summary>
+        </member>
+        <member name="M:Mentalance.Service.UsuarioService.UpdateAsync(System.Int32,Mentalance.Dto.UsuarioDto)">
+            <summary>
+            Atualiza um usuário existente
+            </summary>
+        </member>
+        <member name="M:Mentalance.Service.UsuarioService.DeleteAsync(System.Int32)">
+            <summary>
+            Remove um usuário do sistema
+            </summary>
+        </member>
+        <member name="M:Mentalance.Service.UsuarioService.LoginAsync(Mentalance.Dto.LoginDto)">
+            <summary>
+            Realiza o login de um usuário
+            </summary>
+        </member>
+        <member name="T:Program">
+            <summary>
+            Classe parcial do Program que torna o ponto de entrada acessível para testes de integração.
+            </summary>
+        </member>
+    </members>
+</doc>

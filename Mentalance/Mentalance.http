@@ -1,0 +1,38 @@
+@Mentalance_HostAddress = http://localhost:5030
+@ApiVersion = v1
+
+### ============================================
+### ANÁLISE SEMANAL - Endpoints
+### ============================================
+
+### 1. Gerar Nova Análise Semanal (com Resumo e Recomendação)
+POST {{Mentalance_HostAddress}}/api/{{ApiVersion}}/AnaliseSemanal?idUsuario=1
+Accept: application/json
+
+### 2. Buscar Todas as Análises
+GET {{Mentalance_HostAddress}}/api/{{ApiVersion}}/AnaliseSemanal
+Accept: application/json
+
+### 3. Buscar Análise por ID
+GET {{Mentalance_HostAddress}}/api/{{ApiVersion}}/AnaliseSemanal/1
+Accept: application/json
+
+### 4. Buscar Análises por Usuário (ordenadas da mais recente)
+GET {{Mentalance_HostAddress}}/api/{{ApiVersion}}/AnaliseSemanal/usuario/1
+Accept: application/json
+
+### 5. Deletar Análise
+DELETE {{Mentalance_HostAddress}}/api/{{ApiVersion}}/AnaliseSemanal/1
+Accept: application/json
+
+### ============================================
+### Estrutura da Resposta:
+### {
+###   "idAnalise": 1,
+###   "idUsuario": 1,
+###   "semanaReferencia": "Semana 15/11/2024 a 22/11/2024",
+###   "emocaoPredominante": "Feliz",
+###   "resumo": "Semana positiva com foco em produtividade...",
+###   "recomendacao": "Continue mantendo atividades que trazem bem-estar..."
+### }
+### ============================================
