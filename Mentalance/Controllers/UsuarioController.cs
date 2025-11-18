@@ -230,7 +230,7 @@ namespace Mentalance.Controllers
 
                 var idToken = Guid.NewGuid().ToString();
                 _logger.LogInformation("Login bem-sucedido. Usuário: {UsuarioId}, Email: {Email}", usuario.IdUsuario, usuario.Email);
-                return Ok(new { message = "Login bem-sucedido", idUsuario = usuario.IdUsuario });
+                return Ok(new { message = "Login bem-sucedido", idToken = idToken, IdUsuario = usuario.IdUsuario });
             }
             catch (ArgumentException ex)
             {
