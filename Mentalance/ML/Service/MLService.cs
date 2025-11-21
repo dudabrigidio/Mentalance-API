@@ -1,6 +1,5 @@
 ﻿using Mentalance.ML.Data;
 using Mentalance.Models;
-using Mentalance.Repository;
 using Microsoft.Extensions.Logging;
 using Microsoft.ML;
 using System.Diagnostics;
@@ -15,20 +14,20 @@ namespace Mentalance.ML.Service
     {
         private static readonly ActivitySource ActivitySource = new("Mentalance.MLService");
         private readonly MLContext _mlContext;
-        private readonly ICheckinRepository _checkinRepository;
         private readonly ILogger<MLService> _logger;
         private ITransformer? _model;
         private ITransformer? _modelRecomendacao;
+        private PredictionEngine<SemanaAnalise, AnaliseML>? _engineResumo;
+        private PredictionEngine<SemanaAnalise, RecomendacaoML>? _engineRecomendacao;
+        private readonly object _lockObject = new object();
 
         /// <summary>
         /// Inicializa uma nova instância do MLService
         /// </summary>
-        /// <param name="checkinRepository">Repositório de check-ins para buscar dados de treinamento</param>
         /// <param name="logger">Logger para registro de eventos</param>
-        public MLService(ICheckinRepository checkinRepository, ILogger<MLService> logger)
+        public MLService(ILogger<MLService> logger)
         {
             _mlContext = new MLContext();
-            _checkinRepository = checkinRepository;
             _logger = logger;
 
             using var activity = ActivitySource.StartActivity("InicializarMLService");
@@ -84,6 +83,20 @@ namespace Mentalance.ML.Service
                 activity?.AddEvent(new ActivityEvent("Treinando modelo de Recomendação"));
                 _modelRecomendacao = pipelineRecomendacao.Fit(dataView);
                 activity?.SetTag("ml.modelo_recomendacao_carregado", _modelRecomendacao != null);
+                
+                // Cria os PredictionEngines APÓS treinar ambos os modelos
+                activity?.AddEvent(new ActivityEvent("Criando PredictionEngines"));
+                if (_model != null)
+                {
+                    _engineResumo = _mlContext.Model.CreatePredictionEngine<SemanaAnalise, AnaliseML>(_model);
+                    _logger.LogInformation("PredictionEngine de Resumo criado com sucesso");
+                }
+                if (_modelRecomendacao != null)
+                {
+                    _engineRecomendacao = _mlContext.Model.CreatePredictionEngine<SemanaAnalise, RecomendacaoML>(_modelRecomendacao);
+                    _logger.LogInformation("PredictionEngine de Recomendação criado com sucesso");
+                }
+                
                 activity?.SetStatus(ActivityStatusCode.Ok);
                 
                 _logger.LogInformation("Modelo de Recomendação treinado com sucesso");
@@ -100,11 +113,12 @@ namespace Mentalance.ML.Service
 
 
         /// <summary>
-        /// Gera análise/resumo textual com base nos checkins de uma semana (7 dias)
+        /// Gera análise/resumo textual com base nos checkins fornecidos
         /// </summary>
         /// <param name="usuarioId">ID do usuário</param>
+        /// <param name="checkinsList">Lista de check-ins para analisar</param>
         /// <returns>Predição com resumo textual gerado</returns>
-        public async Task<AnaliseML> GerarResumoAsync(int usuarioId)
+        public async Task<AnaliseML> GerarResumoAsync(int usuarioId, IEnumerable<Checkin> checkinsList)
         {
             using var activity = ActivitySource.StartActivity("GerarResumoML");
             activity?.SetTag("ml.usuario_id", usuarioId);
@@ -114,25 +128,23 @@ namespace Mentalance.ML.Service
             
             try
             {
-                // Busca checkins dos últimos 7 dias
-                activity?.AddEvent(new ActivityEvent("Buscando checkins dos últimos 7 dias"));
-                var checkins = await _checkinRepository.GetByUsuarioEPeriodoAsync(usuarioId);
-                var checkinsList = checkins.ToList();
-                activity?.SetTag("ml.checkins_count", checkinsList.Count);
+                // Converte para lista para evitar múltiplas iterações
+                var checkins = checkinsList.ToList();
+                activity?.SetTag("ml.checkins_count", checkins.Count);
 
                 // Validação de entrada
-                if (checkinsList.Count == 0)
+                if (checkins.Count == 0)
                 {
                     activity?.SetStatus(ActivityStatusCode.Error, "Não há checkins para analisar");
-                    _logger.LogWarning("Não há checkins para analisar nos últimos 7 dias para usuário: {UsuarioId}", usuarioId);
-                    throw new Exception("Não há checkins para analisar nos últimos 7 dias");
+                    _logger.LogWarning("Não há checkins para analisar para usuário: {UsuarioId}", usuarioId);
+                    throw new ArgumentException("Não há checkins para analisar", nameof(checkinsList));
                 }
-
+                
                 // Agrega os checkins da semana
                 activity?.AddEvent(new ActivityEvent("Preparando dados para predição"));
-                var emocoes = checkinsList.Select(c => c.Emocao.ToString()).ToList();
-                var textos = checkinsList.Select(c => c.Texto).Where(t => !string.IsNullOrWhiteSpace(t)).ToList();
-                var emocaoPredominante = CalcularEmocaoPredominante(checkinsList);
+                var emocoes = checkins.Select(c => c.Emocao.ToString()).ToList();
+                var textos = checkins.Select(c => c.Texto).Where(t => !string.IsNullOrWhiteSpace(t)).ToList();
+                var emocaoPredominante = CalcularEmocaoPredominante(checkins);
                 activity?.SetTag("ml.emocao_predominante", emocaoPredominante);
 
                 var emocoesCombinadas = string.Join(",", emocoes);
@@ -148,17 +160,20 @@ namespace Mentalance.ML.Service
                     RecomendacaoEsperada = string.Empty
                 };
 
+                // Inicializa o resultado
                 var resultado = new AnaliseML();
 
                 // Tenta usar o modelo ML.NET para Resumo
                 activity?.AddEvent(new ActivityEvent("Executando predição de Resumo"));
                 try
                 {
-                    if (_model != null)
+                    if (_engineResumo != null)
                     {
-                        var engineResumo = _mlContext.Model.CreatePredictionEngine<SemanaAnalise, AnaliseML>(_model);
-                        var resultadoResumo = engineResumo.Predict(input);
-                        resultado.Resumo = resultadoResumo.Resumo;
+                        lock (_lockObject)
+                        {
+                            var resultadoResumo = _engineResumo.Predict(input);
+                            resultado.Resumo = resultadoResumo.Resumo;
+                        }
                         activity?.SetTag("ml.resumo_gerado_ml", !string.IsNullOrWhiteSpace(resultado.Resumo));
                         _logger.LogInformation("Resumo gerado com sucesso usando modelo ML para usuário: {UsuarioId}", usuarioId);
                     }
@@ -178,11 +193,13 @@ namespace Mentalance.ML.Service
                 activity?.AddEvent(new ActivityEvent("Executando predição de Recomendação"));
                 try
                 {
-                    if (_modelRecomendacao != null)
+                    if (_engineRecomendacao != null)
                     {
-                        var engineRecomendacao = _mlContext.Model.CreatePredictionEngine<SemanaAnalise, RecomendacaoML>(_modelRecomendacao);
-                        var resultadoRecomendacao = engineRecomendacao.Predict(input);
-                        resultado.Recomendacao = resultadoRecomendacao.Recomendacao;
+                        lock (_lockObject)
+                        {
+                            var resultadoRecomendacao = _engineRecomendacao.Predict(input);
+                            resultado.Recomendacao = resultadoRecomendacao.Recomendacao;
+                        }
                         activity?.SetTag("ml.recomendacao_gerada_ml", !string.IsNullOrWhiteSpace(resultado.Recomendacao));
                         _logger.LogInformation("Recomendação gerada com sucesso usando modelo ML para usuário: {UsuarioId}", usuarioId);
                     }

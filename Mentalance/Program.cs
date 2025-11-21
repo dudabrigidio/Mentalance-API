@@ -115,7 +115,7 @@ builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<IAnaliseSemanalService, AnaliseSemanalService>();
 
 // Registra MLService
-builder.Services.AddScoped<IMLService, MLService>();
+builder.Services.AddSingleton<IMLService, MLService>();
 
 // Health Checks
 builder.Services.AddHealthChecks()

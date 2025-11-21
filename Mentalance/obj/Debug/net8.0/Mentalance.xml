@@ -347,6 +347,18 @@
         <member name="M:Mentalance.Migrations.RenomearEmocaoParaEmocao.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
+        <member name="T:Mentalance.Migrations.AdicionarIndicesCheckin">
+            <inheritdoc />
+        </member>
+        <member name="M:Mentalance.Migrations.AdicionarIndicesCheckin.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Mentalance.Migrations.AdicionarIndicesCheckin.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Mentalance.Migrations.AdicionarIndicesCheckin.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
         <member name="T:Mentalance.ML.Data.AnaliseML">
             <summary>
             Classe que representa a predição do modelo ML.NET
@@ -403,12 +415,13 @@
             Label para treinamento: recomendação esperada baseada em regras
             </summary>
         </member>
-        <member name="M:Mentalance.ML.Service.IMLService.GerarResumoAsync(System.Int32)">
+        <member name="M:Mentalance.ML.Service.IMLService.GerarResumoAsync(System.Int32,System.Collections.Generic.IEnumerable{Mentalance.Models.Checkin})">
             <summary>
             Gera análise/resumo textual com base nos checkins de uma semana (7 dias)
             Agrega múltiplas emoções e textos para gerar um resumo do que foi predominante e como melhorar
             </summary>
-            <param name="usuarioId">ID do usuário para buscar checkins dos últimos 7 dias</param>
+            <param name="usuarioId" >ID do usuário para buscar checkins dos últimos 7 dias</param>
+            <param name="checkinsList">Checkins para analisar</param>
             <returns>Predição com resumo textual gerado</returns>
         </member>
         <member name="T:Mentalance.ML.Service.MLService">
@@ -416,18 +429,18 @@
             Serviço de Machine Learning para geração de análises e recomendações baseadas em check-ins
             </summary>
         </member>
-        <member name="M:Mentalance.ML.Service.MLService.#ctor(Mentalance.Repository.ICheckinRepository,Microsoft.Extensions.Logging.ILogger{Mentalance.ML.Service.MLService})">
+        <member name="M:Mentalance.ML.Service.MLService.#ctor(Microsoft.Extensions.Logging.ILogger{Mentalance.ML.Service.MLService})">
             <summary>
             Inicializa uma nova instância do MLService
             </summary>
-            <param name="checkinRepository">Repositório de check-ins para buscar dados de treinamento</param>
             <param name="logger">Logger para registro de eventos</param>
         </member>
-        <member name="M:Mentalance.ML.Service.MLService.GerarResumoAsync(System.Int32)">
+        <member name="M:Mentalance.ML.Service.MLService.GerarResumoAsync(System.Int32,System.Collections.Generic.IEnumerable{Mentalance.Models.Checkin})">
             <summary>
-            Gera análise/resumo textual com base nos checkins de uma semana (7 dias)
+            Gera análise/resumo textual com base nos checkins fornecidos
             </summary>
             <param name="usuarioId">ID do usuário</param>
+            <param name="checkinsList">Lista de check-ins para analisar</param>
             <returns>Predição com resumo textual gerado</returns>
         </member>
         <member name="M:Mentalance.ML.Service.MLService.CalcularEmocaoPredominante(System.Collections.Generic.List{Mentalance.Models.Checkin})">

@@ -147,7 +147,7 @@ namespace Mentalance.Service
 
                 // Usa MLService para gerar o resumo
                 activity?.AddEvent(new ActivityEvent("Gerando resumo com MLService"));
-                var analiseML = await _mlService.GerarResumoAsync(idUsuario);
+                var analiseML = await _mlService.GerarResumoAsync(idUsuario, checkinsList);
 
                 activity?.AddEvent(new ActivityEvent("Criando entidade análise semanal"));
                 var analise = new AnaliseSemanal

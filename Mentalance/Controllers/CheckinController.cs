@@ -30,7 +30,7 @@ namespace Mentalance.Controllers
         /// Lista todos os CheckIn's de um usuário específico
         /// </summary>
         /// <param name="IdUsuario">ID do usuário</param>
-        [HttpGet]
+        [HttpGet] 
         public async Task<ActionResult<IEnumerable<Checkin>>> GetAllCheckin([FromQuery] int idUsuario)
         {
             _logger.LogInformation("Iniciando busca de checkins do usuário: {idUsuario}", idUsuario);

@@ -76,8 +76,14 @@ namespace Mentalance.Repository
             try {
                 var dataFim = DateTime.Now;
                 var dataInicio = dataFim.AddDays(-7);
-                var checkins = await _context.Checkin.Where(c => c.IdUsuario == idUsuario 
-                    && c.DataCheckin >= dataInicio && c.DataCheckin <= dataFim).ToListAsync();
+                // AsNoTracking() melhora performance para queries de leitura (não precisa rastrear mudanças)
+                var checkins = await _context.Checkin
+                    .AsNoTracking()
+                    .Where(c => c.IdUsuario == idUsuario 
+                        && c.DataCheckin >= dataInicio 
+                        && c.DataCheckin <= dataFim)
+                    .OrderBy(c => c.DataCheckin)
+                    .ToListAsync();
                 _logger.LogInformation("Checkins encontrados: {CheckinsCount}", checkins.Count());
                 return checkins;
             }

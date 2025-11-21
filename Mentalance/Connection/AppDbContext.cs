@@ -44,6 +44,15 @@ namespace Mentalance.Connection
             modelBuilder.Entity<Checkin>()
                 .Property(c => c.Emocao)
                 .HasConversion<string>();
+
+            // Adicionar índices para melhorar performance das queries
+            modelBuilder.Entity<Checkin>()
+                .HasIndex(c => c.IdUsuario)
+                .HasDatabaseName("IX_Checkin_IdUsuario");
+
+            modelBuilder.Entity<Checkin>()
+                .HasIndex(c => new { c.IdUsuario, c.DataCheckin })
+                .HasDatabaseName("IX_Checkin_IdUsuario_DataCheckin");
         }
     }
 }
