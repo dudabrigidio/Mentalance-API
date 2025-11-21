@@ -237,7 +237,7 @@ namespace Mentalance.Service
                 return "Calmo";
 
             var contagemEmocoes = checkins
-                .GroupBy(c => c.Emoção.ToString())
+                .GroupBy(c => c.Emocao.ToString())
                 .Select(g => new { Emocao = g.Key, Count = g.Count() })
                 .OrderByDescending(x => x.Count)
                 .ToList();

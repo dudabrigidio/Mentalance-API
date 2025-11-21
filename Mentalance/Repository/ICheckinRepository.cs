@@ -14,11 +14,15 @@ namespace Mentalance.Repository
         Task<IEnumerable<Checkin>> GetAllAsync();
 
         /// <summary>
+        /// Busca todos os checkins de um usuário específico
+        /// </summary>
+        /// <param name="idUsuario">ID do usuário</param>
+        Task<IEnumerable<Checkin>> GetByUsuarioAsync(int idUsuario);
+
+        /// <summary>
         /// Busca check-ins de um usuário em um período específico
         /// </summary>
         /// <param name="idUsuario">ID do usuário</param>
-        /// <param name="dataInicio">Data de início</param>
-        /// <param name="dataFim">Data de fim</param>
         Task<IEnumerable<Checkin>> GetByUsuarioEPeriodoAsync(int idUsuario);
 
         /// <summary>

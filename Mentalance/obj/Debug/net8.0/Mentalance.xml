@@ -83,10 +83,11 @@
             <param name="service">Serviço de check-ins</param>
             <param name="logger">Logger para registro de eventos</param>
         </member>
-        <member name="M:Mentalance.Controllers.CheckinsController.GetCheckin">
+        <member name="M:Mentalance.Controllers.CheckinsController.GetAllCheckin(System.Int32)">
             <summary>
-            Lista de todos os CheckIn's realizados
+            Lista todos os CheckIn's de um usuário específico
             </summary>
+            <param name="IdUsuario">ID do usuário</param>
         </member>
         <member name="M:Mentalance.Controllers.CheckinsController.GetCheckin(System.Int32)">
             <summary>
@@ -195,6 +196,7 @@
                     }
                   
             </remarks>
+            <param name="usuarioDto">Dados do usuário para criação</param>
         </member>
         <member name="M:Mentalance.Controllers.UsuariosController.PutUsuario(System.Int32,Mentalance.Dto.UsuarioDto)">
             <summary>
@@ -259,7 +261,7 @@
             Identificador do usuário que está realizando o check-in
             </summary>
         </member>
-        <member name="P:Mentalance.CheckinDto.Emoção">
+        <member name="P:Mentalance.CheckinDto.Emocao">
             <summary>
             Emoção registrada pelo usuário no check-in
             </summary>
@@ -331,6 +333,18 @@
             <inheritdoc />
         </member>
         <member name="M:Mentalance.Migrations.AdicionarRecomendacaoAnaliseSemanal.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Mentalance.Migrations.RenomearEmocaoParaEmocao">
+            <inheritdoc />
+        </member>
+        <member name="M:Mentalance.Migrations.RenomearEmocaoParaEmocao.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Mentalance.Migrations.RenomearEmocaoParaEmocao.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Mentalance.Migrations.RenomearEmocaoParaEmocao.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
         <member name="T:Mentalance.ML.Data.AnaliseML">
@@ -497,7 +511,7 @@
             Data e hora em que o check-in foi realizado
             </summary>
         </member>
-        <member name="P:Mentalance.Models.Checkin.Emoção">
+        <member name="P:Mentalance.Models.Checkin.Emocao">
             <summary>
             Emoção registrada pelo usuário no check-in
             </summary>
@@ -614,6 +628,11 @@
             Busca todos os checkins realizados
             </summary>
         </member>
+        <member name="M:Mentalance.Repository.CheckinRepository.GetByUsuarioAsync(System.Int32)">
+            <summary>
+            Busca todos os checkins de um usuário específico
+            </summary>
+        </member>
         <member name="M:Mentalance.Repository.CheckinRepository.GetByUsuarioEPeriodoAsync(System.Int32)">
             <summary>
             Busca checkins de um usuário em um período específico
@@ -689,13 +708,17 @@
             Busca todos os checkins realizados
             </summary>
         </member>
+        <member name="M:Mentalance.Repository.ICheckinRepository.GetByUsuarioAsync(System.Int32)">
+            <summary>
+            Busca todos os checkins de um usuário específico
+            </summary>
+            <param name="idUsuario">ID do usuário</param>
+        </member>
         <member name="M:Mentalance.Repository.ICheckinRepository.GetByUsuarioEPeriodoAsync(System.Int32)">
             <summary>
             Busca check-ins de um usuário em um período específico
             </summary>
             <param name="idUsuario">ID do usuário</param>
-            <param name="dataInicio">Data de início</param>
-            <param name="dataFim">Data de fim</param>
         </member>
         <member name="M:Mentalance.Repository.ICheckinRepository.GetByIdAsync(System.Int32)">
             <summary>
@@ -887,10 +910,11 @@
             <param name="usuarioRepository">Repositório de usuários</param>
             <param name="logger">Logger para registro de eventos</param>
         </member>
-        <member name="M:Mentalance.Service.CheckinService.GetAllAsync">
+        <member name="M:Mentalance.Service.CheckinService.GetAllAsync(System.Int32)">
             <summary>
-            Retorna todos os checkins realizados
+            Retorna todos os checkins de um usuário específico
             </summary>
+            <param name="idUsuario">ID do usuário</param>
         </member>
         <member name="M:Mentalance.Service.CheckinService.GetByIdAsync(System.Int32)">
             <summary>
@@ -927,6 +951,11 @@
             Verifica se o texto contém alguma das palavras-chave fornecidas
             </summary>
         </member>
+        <member name="T:Mentalance.Service.IAnaliseSemanalService">
+            <summary>
+            Interface que define os contratos de lógica de negócio para a entidade AnaliseSemanal
+            </summary>
+        </member>
         <member name="M:Mentalance.Service.IAnaliseSemanalService.GetAllAsync">
             <summary>
             Retorna todas as análises realizadas
@@ -955,10 +984,11 @@
             Interface que define os contratos de lógica de negócio para a entidade Checkin
             </summary>
         </member>
-        <member name="M:Mentalance.Service.ICheckinService.GetAllAsync">
+        <member name="M:Mentalance.Service.ICheckinService.GetAllAsync(System.Int32)">
             <summary>
-            Retorna todos os checkins realizados
+            Retorna todos os checkins de um usuário específico
             </summary>
+            <param name="idUsuario">ID do usuário</param>
         </member>
         <member name="M:Mentalance.Service.ICheckinService.GetByIdAsync(System.Int32)">
             <summary>
@@ -970,14 +1000,14 @@
             <summary>
             Cria um novo checkin após validar os dados
             </summary>
-            <param name="checkin">Objeto Checkin a ser criado</param>
+            <param name="checkinDto">Objeto Checkin a ser criado</param>
         </member>
         <member name="M:Mentalance.Service.ICheckinService.UpdateAsync(System.Int32,Mentalance.CheckinDto)">
             <summary>
             Atualiza um checkin existente
             </summary>
             <param name="id">ID do checkin a ser atualizado</param>
-            <param name="checkin">Objeto checkin com dados atualizados</param>
+            <param name="checkinDto">Objeto CheckinDto com dados atualizados</param>
         </member>
         <member name="M:Mentalance.Service.ICheckinService.DeleteAsync(System.Int32)">
             <summary>
@@ -1005,14 +1035,14 @@
             <summary>
             Cria um novo usuário após validar os dados
             </summary>
-            <param name="usuario">Objeto Usuario a ser criado</param>
+            <param name="usuarioDto">Objeto UsuarioDto a ser criado</param>
         </member>
         <member name="M:Mentalance.Service.IUsuarioService.UpdateAsync(System.Int32,Mentalance.Dto.UsuarioDto)">
             <summary>
             Atualiza um usuário existente
             </summary>
             <param name="id">ID do usuário a ser atualizado</param>
-            <param name="usuario">Objeto Usuario com dados atualizados</param>
+            <param name="usuarioDto">Objeto UsuarioDto com dados atualizados</param>
         </member>
         <member name="M:Mentalance.Service.IUsuarioService.DeleteAsync(System.Int32)">
             <summary>
@@ -1068,6 +1098,31 @@
         <member name="M:Mentalance.Service.UsuarioService.LoginAsync(Mentalance.Dto.LoginDto)">
             <summary>
             Realiza o login de um usuário
+            </summary>
+        </member>
+        <member name="T:Mentalance.WeatherForecast">
+            <summary>
+            Representa uma previsão do tempo
+            </summary>
+        </member>
+        <member name="P:Mentalance.WeatherForecast.Date">
+            <summary>
+            Data da previsão
+            </summary>
+        </member>
+        <member name="P:Mentalance.WeatherForecast.TemperatureC">
+            <summary>
+            Temperatura em graus Celsius
+            </summary>
+        </member>
+        <member name="P:Mentalance.WeatherForecast.TemperatureF">
+            <summary>
+            Temperatura em graus Fahrenheit
+            </summary>
+        </member>
+        <member name="P:Mentalance.WeatherForecast.Summary">
+            <summary>
+            Resumo da previsão do tempo
             </summary>
         </member>
         <member name="T:Program">

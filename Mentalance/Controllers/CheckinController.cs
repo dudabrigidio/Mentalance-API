@@ -27,21 +27,33 @@ namespace Mentalance.Controllers
         }
 
         /// <summary>
-        /// Lista de todos os CheckIn's realizados
+        /// Lista todos os CheckIn's de um usuário específico
         /// </summary>
+        /// <param name="IdUsuario">ID do usuário</param>
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Checkin>>> GetCheckin()
+        public async Task<ActionResult<IEnumerable<Checkin>>> GetAllCheckin([FromQuery] int idUsuario)
         {
-            _logger.LogInformation("Iniciando busca de todos os checkins");
+            _logger.LogInformation("Iniciando busca de checkins do usuário: {idUsuario}", idUsuario);
+
+            if (idUsuario <= 0)
+            {
+                _logger.LogWarning("Tentativa de buscar checkins com ID do usuário inválido: {idUsuario}", idUsuario);
+                return BadRequest(new { message = "ID do usuário deve ser maior que zero" });
+            }
 
             try {
-                var checkins = await _service.GetAllAsync();
-                _logger.LogInformation("Checkins encontrados: {CheckinsCount}", checkins.Count());
+                var checkins = await _service.GetAllAsync(idUsuario);
+                _logger.LogInformation("Checkins encontrados para o usuário {idUsuario}: {CheckinsCount}", idUsuario, checkins.Count());
                 return Ok(checkins);
+            }
+            catch (ArgumentException ex)
+            {
+                _logger.LogError(ex, "Erro ao buscar checkins do usuário: {idUsuario}", idUsuario);
+                return BadRequest(new { message = ex.Message });
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Erro ao buscar todos os checkins");
+                _logger.LogError(ex, "Erro ao buscar checkins do usuário: {idUsuario}", idUsuario);
                 throw;
             }
         }

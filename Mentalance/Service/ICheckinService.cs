@@ -1,4 +1,5 @@
 ﻿using Mentalance.Models;
+using Mentalance.Dto;
 
 namespace Mentalance.Service
 {
@@ -8,9 +9,10 @@ namespace Mentalance.Service
     public interface ICheckinService
     {
         /// <summary>
-        /// Retorna todos os checkins realizados
+        /// Retorna todos os checkins de um usuário específico
         /// </summary>
-        Task<IEnumerable<Checkin>> GetAllAsync();
+        /// <param name="idUsuario">ID do usuário</param>
+        Task<IEnumerable<Checkin>> GetAllAsync(int idUsuario);
 
         /// <summary>
         /// Busca um checkin pelo ID
@@ -21,14 +23,14 @@ namespace Mentalance.Service
         /// <summary>
         /// Cria um novo checkin após validar os dados
         /// </summary>
-        /// <param name="checkin">Objeto Checkin a ser criado</param>
+        /// <param name="checkinDto">Objeto Checkin a ser criado</param>
         Task<Checkin> CreateAsync(CheckinDto checkinDto);
 
         /// <summary>
         /// Atualiza um checkin existente
         /// </summary>
         /// <param name="id">ID do checkin a ser atualizado</param>
-        /// <param name="checkin">Objeto checkin com dados atualizados</param>
+        /// <param name="checkinDto">Objeto CheckinDto com dados atualizados</param>
         Task UpdateAsync(int id, CheckinDto checkinDto);
 
         /// <summary>

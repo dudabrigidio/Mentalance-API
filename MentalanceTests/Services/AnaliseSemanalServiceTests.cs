@@ -53,10 +53,10 @@ public class AnaliseSemanalServiceTests
             .Setup(r => r.GetByUsuarioEPeriodoAsync(2))
             .ReturnsAsync(new List<Checkin>
             {
-                new Checkin { IdCheckin = 1, IdUsuario = 2, Emoção = EmocaoEnum.Feliz, Texto = "Estou bem hoje", AnáliseSentimento = "positivo", RespostaGerada = "Parabéns! Está se sentindo bem hoje. Continue assim!", DataCheckin = DateTime.Now },
-                new Checkin { IdCheckin = 2, IdUsuario = 2, Emoção = EmocaoEnum.Cansado, Texto = "Estou cansado hoje", AnáliseSentimento = "negativo", RespostaGerada = "Está cansado. Tente se relaxar e faça algo que te traga tranquilidade.", DataCheckin = DateTime.Now },
-                new Checkin { IdCheckin = 3, IdUsuario = 2, Emoção = EmocaoEnum.Ansioso, Texto = "Estou ansioso hoje", AnáliseSentimento = "negativo", RespostaGerada = "Está ansioso. Tente se relaxar e faça algo que te traga alegria.", DataCheckin = DateTime.Now },
-                new Checkin { IdCheckin = 4, IdUsuario = 2, Emoção = EmocaoEnum.Estressado, Texto = "Estou estressado hoje", AnáliseSentimento = "negativo", RespostaGerada = "Está estressao. Tente fazer algo que te traga tranquilidade.", DataCheckin = DateTime.Now }
+                new Checkin { IdCheckin = 1, IdUsuario = 2, Emocao = EmocaoEnum.Feliz, Texto = "Estou bem hoje", AnáliseSentimento = "positivo", RespostaGerada = "Parabéns! Está se sentindo bem hoje. Continue assim!", DataCheckin = DateTime.Now },
+                new Checkin { IdCheckin = 2, IdUsuario = 2, Emocao = EmocaoEnum.Cansado, Texto = "Estou cansado hoje", AnáliseSentimento = "negativo", RespostaGerada = "Está cansado. Tente se relaxar e faça algo que te traga tranquilidade.", DataCheckin = DateTime.Now },
+                new Checkin { IdCheckin = 3, IdUsuario = 2, Emocao = EmocaoEnum.Ansioso, Texto = "Estou ansioso hoje", AnáliseSentimento = "negativo", RespostaGerada = "Está ansioso. Tente se relaxar e faça algo que te traga alegria.", DataCheckin = DateTime.Now },
+                new Checkin { IdCheckin = 4, IdUsuario = 2, Emocao = EmocaoEnum.Estressado, Texto = "Estou estressado hoje", AnáliseSentimento = "negativo", RespostaGerada = "Está estressao. Tente fazer algo que te traga tranquilidade.", DataCheckin = DateTime.Now }
             });
 
         _mockMLService
@@ -124,7 +124,7 @@ public class AnaliseSemanalServiceTests
         _mockCheckinRepository
             .Setup(r => r.AddAsync(It.Is<Checkin>(c =>
                 c.IdUsuario == 1 &&
-                c.Emoção == EmocaoEnum.Feliz &&
+                c.Emocao == EmocaoEnum.Feliz &&
                 c.Texto == "estou bem e feliz" &&
                 !string.IsNullOrEmpty(c.AnáliseSentimento) &&
                 !string.IsNullOrEmpty(c.RespostaGerada) &&

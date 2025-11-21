@@ -33,7 +33,7 @@ namespace Mentalance.Models
         /// </summary>
         [Required]
         [MaxLength(100)]
-        public EmocaoEnum Emoção { get; set; }
+        public EmocaoEnum Emocao { get; set; }
 
         /// <summary>
         /// Texto descritivo do check-in fornecido pelo usuário

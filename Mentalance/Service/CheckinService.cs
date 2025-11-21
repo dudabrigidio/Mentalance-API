@@ -33,29 +33,38 @@ namespace Mentalance.Service
         }
 
         /// <summary>
-        /// Retorna todos os checkins realizados
+        /// Retorna todos os checkins de um usuário específico
         /// </summary>
-        public async Task<IEnumerable<Checkin>> GetAllAsync()
+        /// <param name="idUsuario">ID do usuário</param>
+        public async Task<IEnumerable<Checkin>> GetAllAsync(int idUsuario)
         {
-            using var activity = ActivitySource.StartActivity("GetAllCheckins");
+            using var activity = ActivitySource.StartActivity("GetAllCheckinsByUsuario");
+            activity?.SetTag("checkin.usuario_id", idUsuario);
             
-            _logger.LogInformation("Iniciando busca de todos os checkins");
+            _logger.LogInformation("Iniciando busca de checkins do usuário: {UsuarioId}", idUsuario);
+            
+            if (idUsuario <= 0)
+            {
+                activity?.SetStatus(ActivityStatusCode.Error, "ID do usuário inválido");
+                _logger.LogWarning("Tentativa de buscar checkins com ID do usuário inválido: {UsuarioId}", idUsuario);
+                throw new ArgumentException("ID do usuário deve ser maior que zero", nameof(idUsuario));
+            }
             
             try {
                 activity?.AddEvent(new ActivityEvent("Buscando checkins no repositório"));
-                var checkins = await _repository.GetAllAsync();
+                var checkins = await _repository.GetByUsuarioAsync(idUsuario);
                 
                 var count = checkins.Count();
                 activity?.SetTag("checkin.count", count);
                 activity?.SetStatus(ActivityStatusCode.Ok);
                 
-                _logger.LogInformation("Checkins encontrados: {CheckinsCount}", count);
+                _logger.LogInformation("Checkins encontrados para o usuário {UsuarioId}: {CheckinsCount}", idUsuario, count);
                 return checkins;
             }
             catch (Exception ex)
             {
                 activity?.SetStatus(ActivityStatusCode.Error, ex.Message);
-                _logger.LogError(ex, "Erro ao buscar todos os checkins");
+                _logger.LogError(ex, "Erro ao buscar checkins do usuário: {UsuarioId}", idUsuario);
                 throw;
             }
         }
@@ -84,7 +93,7 @@ namespace Mentalance.Service
                 if (checkin != null)
                 {
                     activity?.SetTag("checkin.usuario_id", checkin.IdUsuario);
-                    activity?.SetTag("checkin.emocao", checkin.Emoção.ToString());
+                    activity?.SetTag("checkin.emocao", checkin.Emocao.ToString());
                     activity?.SetStatus(ActivityStatusCode.Ok);
                 }
                 else
@@ -127,7 +136,7 @@ namespace Mentalance.Service
 
                 // Adicionar tags ao trace
                 activity?.SetTag("checkin.usuario_id", checkinDto.IdUsuario);
-                activity?.SetTag("checkin.emocao", checkinDto.Emoção.ToString());
+                activity?.SetTag("checkin.emocao", checkinDto.Emocao.ToString());
 
                 // Validação: verifica campos obrigatórios
 
@@ -138,21 +147,21 @@ namespace Mentalance.Service
                     throw new ArgumentException("ID do usuário é obrigatório e deve ser maior que zero", nameof(checkinDto.IdUsuario));
                 }
 
-                if (string.IsNullOrWhiteSpace(checkinDto.Emoção.ToString()))
+                if (string.IsNullOrWhiteSpace(checkinDto.Emocao.ToString()))
                 {
                     activity?.SetStatus(ActivityStatusCode.Error, "Emoção nula");
                     _logger.LogWarning("Tentativa de criar checkin com Emoção nula");
-                    throw new ArgumentException("Emoção é obrigatória", nameof(checkinDto.Emoção));
+                    throw new ArgumentException("Emoção é obrigatória", nameof(checkinDto.Emocao));
                 }
 
-                if (checkinDto.Emoção != EmocaoEnum.Feliz && checkinDto.Emoção != EmocaoEnum.Cansado
-                                                        && checkinDto.Emoção != EmocaoEnum.Ansioso 
-                                                        && checkinDto.Emoção != EmocaoEnum.Calmo 
-                                                        && checkinDto.Emoção != EmocaoEnum.Estressado)
+                if (checkinDto.Emocao != EmocaoEnum.Feliz && checkinDto.Emocao != EmocaoEnum.Cansado
+                                                        && checkinDto.Emocao != EmocaoEnum.Ansioso 
+                                                        && checkinDto.Emocao != EmocaoEnum.Calmo 
+                                                        && checkinDto.Emocao != EmocaoEnum.Estressado)
                 {
                     activity?.SetStatus(ActivityStatusCode.Error, "Emoção inválida");
-                    _logger.LogWarning("Tentativa de criar checkin com Emoção inválida: {Emocao}", checkinDto.Emoção);
-                    throw new ArgumentException("Insira uma emoção válida: Feliz, Cansado, Ansioso, Calmo, Estressado", nameof(checkinDto.Emoção));
+                    _logger.LogWarning("Tentativa de criar checkin com Emoção inválida: {Emocao}", checkinDto.Emocao);
+                    throw new ArgumentException("Insira uma emoção válida: Feliz, Cansado, Ansioso, Calmo, Estressado", nameof(checkinDto.Emocao));
                 }
 
             
@@ -176,10 +185,10 @@ namespace Mentalance.Service
                 activity?.AddEvent(new ActivityEvent("Criando entidade checkin"));
                 var checkin = new Checkin();
                 checkin.IdUsuario = checkinDto.IdUsuario;
-                checkin.Emoção = checkinDto.Emoção;
+                checkin.Emocao = checkinDto.Emocao;
                 checkin.Texto = checkinDto.Texto;
-                checkin.AnáliseSentimento = ClassificarSentimento(checkinDto.Emoção);
-                checkin.RespostaGerada = GerarResposta(checkinDto.Emoção, checkin.AnáliseSentimento, checkin.Texto);
+                checkin.AnáliseSentimento = ClassificarSentimento(checkinDto.Emocao);
+                checkin.RespostaGerada = GerarResposta(checkinDto.Emocao, checkin.AnáliseSentimento, checkin.Texto);
                 checkin.DataCheckin = DateTime.Now;
 
                 // Adiciona o checkin ao banco
@@ -236,7 +245,7 @@ namespace Mentalance.Service
 
                 // Adicionar tags ao trace
                 activity?.SetTag("checkin.usuario_id", checkinDto.IdUsuario);
-                activity?.SetTag("checkin.emocao", checkinDto.Emoção.ToString());
+                activity?.SetTag("checkin.emocao", checkinDto.Emocao.ToString());
 
                 // Validação: verifica campos obrigatórios
 
@@ -247,21 +256,21 @@ namespace Mentalance.Service
                     throw new ArgumentException("ID do usuário é obrigatório e deve ser maior que zero", nameof(checkinDto.IdUsuario));
                 }
 
-                if (string.IsNullOrWhiteSpace(checkinDto.Emoção.ToString()))
+                if (string.IsNullOrWhiteSpace(checkinDto.Emocao.ToString()))
                 {
                     activity?.SetStatus(ActivityStatusCode.Error, "Emoção nula");
                     _logger.LogWarning("Tentativa de atualizar checkin com Emoção nula");
-                    throw new ArgumentException("Emoção é obrigatória", nameof(checkinDto.Emoção));
+                    throw new ArgumentException("Emoção é obrigatória", nameof(checkinDto.Emocao));
                 }
 
-                if (checkinDto.Emoção != EmocaoEnum.Feliz && checkinDto.Emoção != EmocaoEnum.Cansado
-                                                        && checkinDto.Emoção != EmocaoEnum.Ansioso
-                                                        && checkinDto.Emoção != EmocaoEnum.Calmo
-                                                        && checkinDto.Emoção != EmocaoEnum.Estressado)
+                if (checkinDto.Emocao != EmocaoEnum.Feliz && checkinDto.Emocao != EmocaoEnum.Cansado
+                                                        && checkinDto.Emocao != EmocaoEnum.Ansioso
+                                                        && checkinDto.Emocao != EmocaoEnum.Calmo
+                                                        && checkinDto.Emocao != EmocaoEnum.Estressado)
                 {
                     activity?.SetStatus(ActivityStatusCode.Error, "Emoção inválida");
-                    _logger.LogWarning("Tentativa de atualizar checkin com Emoção inválida: {Emocao}", checkinDto.Emoção);
-                    throw new ArgumentException("Insira uma emoção válida: Feliz, Cansado, Ansioso, Calmo, Estressado", nameof(checkinDto.Emoção));
+                    _logger.LogWarning("Tentativa de atualizar checkin com Emoção inválida: {Emocao}", checkinDto.Emocao);
+                    throw new ArgumentException("Insira uma emoção válida: Feliz, Cansado, Ansioso, Calmo, Estressado", nameof(checkinDto.Emocao));
                 }
 
                 if (string.IsNullOrWhiteSpace(checkinDto.Texto))
@@ -284,10 +293,10 @@ namespace Mentalance.Service
                 // Atualiza o checkin existente com os novos dados
                 activity?.AddEvent(new ActivityEvent("Atualizando entidade checkin"));
                 existingCheckin.IdUsuario = checkinDto.IdUsuario;
-                existingCheckin.Emoção = checkinDto.Emoção;
+                existingCheckin.Emocao = checkinDto.Emocao;
                 existingCheckin.Texto = checkinDto.Texto;
-                existingCheckin.AnáliseSentimento = ClassificarSentimento(checkinDto.Emoção);
-                existingCheckin.RespostaGerada = GerarResposta(checkinDto.Emoção, existingCheckin.AnáliseSentimento, checkinDto.Texto);
+                existingCheckin.AnáliseSentimento = ClassificarSentimento(checkinDto.Emocao);
+                existingCheckin.RespostaGerada = GerarResposta(checkinDto.Emocao, existingCheckin.AnáliseSentimento, checkinDto.Texto);
                 // DataCheckin não é atualizada - mantém a data original do checkin
 
                 // Salva as alterações

@@ -22,7 +22,7 @@ namespace Mentalance
         /// </summary>
         [Required]
         [JsonConverter(typeof(EmocaoEnumJsonConverter))]
-        public EmocaoEnum Emoção { get; set; }
+        public EmocaoEnum Emocao { get; set; }
 
         /// <summary>
         /// Texto descritivo do check-in fornecido pelo usuário

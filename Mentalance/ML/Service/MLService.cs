@@ -130,7 +130,7 @@ namespace Mentalance.ML.Service
 
                 // Agrega os checkins da semana
                 activity?.AddEvent(new ActivityEvent("Preparando dados para predição"));
-                var emocoes = checkinsList.Select(c => c.Emoção.ToString()).ToList();
+                var emocoes = checkinsList.Select(c => c.Emocao.ToString()).ToList();
                 var textos = checkinsList.Select(c => c.Texto).Where(t => !string.IsNullOrWhiteSpace(t)).ToList();
                 var emocaoPredominante = CalcularEmocaoPredominante(checkinsList);
                 activity?.SetTag("ml.emocao_predominante", emocaoPredominante);
@@ -239,7 +239,7 @@ namespace Mentalance.ML.Service
         private string CalcularEmocaoPredominante(List<Checkin> checkins)
         {
             var contagemEmocoes = checkins
-                .GroupBy(c => c.Emoção.ToString())
+                .GroupBy(c => c.Emocao.ToString())
                 .Select(g => new { Emocao = g.Key, Count = g.Count() })
                 .OrderByDescending(x => x.Count)
                 .ToList();

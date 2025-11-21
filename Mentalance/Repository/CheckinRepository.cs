@@ -44,6 +44,29 @@ namespace Mentalance.Repository
         }
 
         /// <summary>
+        /// Busca todos os checkins de um usuário específico
+        /// </summary>
+        public async Task<IEnumerable<Checkin>> GetByUsuarioAsync(int idUsuario)
+        {
+            _logger.LogInformation("Buscando checkins do usuário: {UsuarioId}", idUsuario);
+            
+            try {
+                var checkins = await _context.Checkin
+                    .Where(c => c.IdUsuario == idUsuario)
+                    .OrderByDescending(c => c.DataCheckin)
+                    .ToListAsync();
+                
+                _logger.LogInformation("Checkins encontrados para o usuário {UsuarioId}: {CheckinsCount}", idUsuario, checkins.Count());
+                return checkins;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Erro ao buscar checkins do usuário: {UsuarioId}", idUsuario);
+                throw;
+            }
+        }
+
+        /// <summary>
         /// Busca checkins de um usuário em um período específico
         /// </summary>
         public async Task<IEnumerable<Checkin>> GetByUsuarioEPeriodoAsync(int idUsuario)

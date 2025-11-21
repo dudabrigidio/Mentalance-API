@@ -2,6 +2,9 @@
 
 namespace Mentalance.Service
 {
+    /// <summary>
+    /// Interface que define os contratos de lógica de negócio para a entidade AnaliseSemanal
+    /// </summary>
     public interface IAnaliseSemanalService
     {
 

@@ -23,14 +23,14 @@ namespace Mentalance.Service
         /// <summary>
         /// Cria um novo usuário após validar os dados
         /// </summary>
-        /// <param name="usuario">Objeto Usuario a ser criado</param>
+        /// <param name="usuarioDto">Objeto UsuarioDto a ser criado</param>
         Task<Usuario> CreateAsync(UsuarioDto usuarioDto);
 
         /// <summary>
         /// Atualiza um usuário existente
         /// </summary>
         /// <param name="id">ID do usuário a ser atualizado</param>
-        /// <param name="usuario">Objeto Usuario com dados atualizados</param>
+        /// <param name="usuarioDto">Objeto UsuarioDto com dados atualizados</param>
         Task UpdateAsync(int id, UsuarioDto usuarioDto);
 
         /// <summary>

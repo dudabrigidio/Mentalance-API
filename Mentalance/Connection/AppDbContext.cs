@@ -42,7 +42,7 @@ namespace Mentalance.Connection
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Checkin>()
-                .Property(c => c.Emoção)
+                .Property(c => c.Emocao)
                 .HasConversion<string>();
         }
     }

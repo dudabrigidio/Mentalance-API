@@ -121,12 +121,18 @@
   },
   {
     "ContainingType": "Mentalance.Controllers.CheckinsController",
-    "Method": "GetCheckin",
+    "Method": "GetAllCheckin",
     "RelativePath": "api/v1/Checkins",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "idUsuario",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.IEnumerable\u00601[[Mentalance.Models.Checkin, Mentalance, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",

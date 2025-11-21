@@ -39,7 +39,7 @@ public class CheckinServiceTests
         var checkinDto = new CheckinDto
         {
             IdUsuario = 2,
-            Emoção = EmocaoEnum.Feliz,
+            Emocao = EmocaoEnum.Feliz,
             Texto = "Estou bem hoje"
         };
 
@@ -50,7 +50,7 @@ public class CheckinServiceTests
         _mockRepository
             .Setup(r => r.AddAsync(It.Is<Checkin>(c =>
                 c.IdUsuario == checkinDto.IdUsuario &&
-                c.Emoção == checkinDto.Emoção && 
+                c.Emocao == checkinDto.Emocao && 
                 c.Texto == checkinDto.Texto &&
                 !string.IsNullOrEmpty(c.AnáliseSentimento) && 
                 !string.IsNullOrEmpty(c.RespostaGerada) &&
@@ -67,26 +67,42 @@ public class CheckinServiceTests
 
 
     /// <summary>
-    /// TESTE: Listar todos os checkins quando existem
+    /// TESTE: Listar todos os checkins de um usuário quando existem
     /// </summary>
     [Fact]
-    public async Task GetAllAsync_DeveRetornarTodosCheckins_QuandoExistirem()
+    public async Task GetAllAsync_DeveRetornarCheckinsDoUsuario_QuandoExistirem()
     {
+        var usuarioId = 1;
         var checkins = new List<Checkin>
         {
-            new Checkin { IdCheckin = 1, IdUsuario = 1, Emoção = EmocaoEnum.Feliz, Texto = "Estou bem hoje", AnáliseSentimento = "positivo", RespostaGerada = "Parabéns! Está se sentindo bem hoje. Continue assim!", DataCheckin = DateTime.Now },
-            new Checkin { IdCheckin = 2, IdUsuario = 2, Emoção = EmocaoEnum.Cansado, Texto = "Estou cansado hoje", AnáliseSentimento = "negativo", RespostaGerada = "Está cansado. Tente se relaxar e faça algo que te traga tranquilidade.", DataCheckin = DateTime.Now }
+            new Checkin { IdCheckin = 1, IdUsuario = 1, Emocao = EmocaoEnum.Feliz, Texto = "Estou bem hoje", AnáliseSentimento = "positivo", RespostaGerada = "Parabéns! Está se sentindo bem hoje. Continue assim!", DataCheckin = DateTime.Now },
+            new Checkin { IdCheckin = 2, IdUsuario = 1, Emocao = EmocaoEnum.Cansado, Texto = "Estou cansado hoje", AnáliseSentimento = "negativo", RespostaGerada = "Está cansado. Tente se relaxar e faça algo que te traga tranquilidade.", DataCheckin = DateTime.Now }
         };
 
-        _mockRepository.Setup(r => r.GetAllAsync()).ReturnsAsync(checkins);
+        _mockRepository.Setup(r => r.GetByUsuarioAsync(usuarioId)).ReturnsAsync(checkins);
 
         // ACT
-        var result = await _service.GetAllAsync();
+        var result = await _service.GetAllAsync(usuarioId);
 
         // ASSERT
         result.Should().NotBeNull();
         result.Should().HaveCount(2); // Verifica se tem 2 itens
-        _mockRepository.Verify(r => r.GetAllAsync(), Times.Once); // Verifica se foi chamado
+        result.Should().OnlyContain(c => c.IdUsuario == usuarioId); // Verifica se todos são do usuário
+        _mockRepository.Verify(r => r.GetByUsuarioAsync(usuarioId), Times.Once); // Verifica se foi chamado
+    }
+
+    /// <summary>
+    /// TESTE: Deve lançar exceção quando ID do usuário é inválido
+    /// </summary>
+    [Fact]
+    public async Task GetAllAsync_DeveLancarExcecao_QuandoIdUsuarioInvalido()
+    {
+        // ACT & ASSERT
+        var exception = await Assert.ThrowsAsync<ArgumentException>(() =>
+            _service.GetAllAsync(0));
+
+        exception.ParamName.Should().Be("idUsuario");
+        _mockRepository.Verify(r => r.GetByUsuarioAsync(It.IsAny<int>()), Times.Never);
     }
 
 
@@ -101,7 +117,7 @@ public class CheckinServiceTests
         {
             IdCheckin = 1,
             IdUsuario = 1,
-            Emoção = EmocaoEnum.Feliz,
+            Emocao = EmocaoEnum.Feliz,
             Texto = "Estou bem hoje",
             AnáliseSentimento = "positivo",
             RespostaGerada = "Parabéns! Está se sentindo bem hoje. Continue assim!",
@@ -142,7 +158,7 @@ public class CheckinServiceTests
         {
             IdCheckin = 1,
             IdUsuario = 1,
-            Emoção = EmocaoEnum.Feliz,
+            Emocao = EmocaoEnum.Feliz,
             Texto = "Estou bem hoje",
             AnáliseSentimento = "positivo",
             RespostaGerada = "Parabéns! Está se sentindo bem hoje. Continue assim!",
@@ -152,7 +168,7 @@ public class CheckinServiceTests
         var updatedCheckinDto = new CheckinDto
         {
             IdUsuario = 2,
-            Emoção = EmocaoEnum.Cansado,
+            Emocao = EmocaoEnum.Cansado,
             Texto = "Estou cansado hoje"
         };
 
@@ -165,7 +181,7 @@ public class CheckinServiceTests
 
         _mockRepository.Setup(r => r.UpdateAsync(It.Is<Checkin>(c =>
                 c.IdUsuario == updatedCheckinDto.IdUsuario &&
-                c.Emoção == updatedCheckinDto.Emoção &&
+                c.Emocao == updatedCheckinDto.Emocao &&
                 c.Texto == updatedCheckinDto.Texto &&
                 !string.IsNullOrEmpty(c.AnáliseSentimento) &&
                 !string.IsNullOrEmpty(c.RespostaGerada) &&
@@ -191,7 +207,7 @@ public class CheckinServiceTests
         var checkinDto = new CheckinDto
         {
             IdUsuario = 2,
-            Emoção = EmocaoEnum.Feliz,
+            Emocao = EmocaoEnum.Feliz,
             Texto = "Estou bem hoje"
         };
 
@@ -219,7 +235,7 @@ public class CheckinServiceTests
         {
             IdCheckin = 1,
             IdUsuario = 1,
-            Emoção = EmocaoEnum.Feliz,
+            Emocao = EmocaoEnum.Feliz,
             Texto = "Estou bem hoje",
             AnáliseSentimento = "positivo",
             RespostaGerada = "Parabéns! Está se sentindo bem hoje. Continue assim!",
