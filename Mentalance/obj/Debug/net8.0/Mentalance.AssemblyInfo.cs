@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Mentalance")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f006873d1346304c3a1ed7d413891ac18237b3ad")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+88b13bbff99efdd52d005bfef60c007bc397cc6c")]
 [assembly: System.Reflection.AssemblyProductAttribute("Mentalance")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Mentalance")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -41,47 +41,115 @@ namespace Mentalance.ML.Service
                 activity?.AddEvent(new ActivityEvent("Preparando data view"));
                 var dataView = _mlContext.Data.LoadFromEnumerable(dadosTreino);
 
-                // Pipeline para modelo de Resumo
-                activity?.AddEvent(new ActivityEvent("Criando pipeline do modelo de Resumo"));
-                var pipelineResumo = _mlContext.Transforms.Conversion.MapValueToKey(
-                        outputColumnName: "Label",
-                        inputColumnName: nameof(SemanaAnalise.ResumoEsperado))
-                    .Append(_mlContext.Transforms.Text.FeaturizeText("TextoFeatures", nameof(SemanaAnalise.Textos)))
-                    .Append(_mlContext.Transforms.Text.FeaturizeText("EmocaoFeatures", nameof(SemanaAnalise.Emocoes)))
-                    .Append(_mlContext.Transforms.Text.FeaturizeText("EmocaoPredominanteFeatures", nameof(SemanaAnalise.EmocaoPredominante)))
-                    .Append(_mlContext.Transforms.Concatenate("Features", "TextoFeatures", "EmocaoFeatures", "EmocaoPredominanteFeatures"))
-                    .Append(_mlContext.Transforms.NormalizeMinMax("Features"))
-                    .Append(_mlContext.MulticlassClassification.Trainers.SdcaMaximumEntropy(
-                        labelColumnName: "Label",
-                        featureColumnName: "Features"))
-                    .Append(_mlContext.Transforms.Conversion.MapKeyToValue(
-                        outputColumnName: "PredictedLabel"));
+                // Tenta carregar modelo de Resumo do cache
+                var modeloResumoPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ML", "Data", "modelo_resumo.ml");
+                if (File.Exists(modeloResumoPath))
+                {
+                    activity?.AddEvent(new ActivityEvent("Carregando modelo de Resumo do cache"));
+                    try
+                    {
+                        _model = _mlContext.Model.Load(modeloResumoPath, out var schema);
+                        _logger.LogInformation("Modelo de Resumo carregado do cache com sucesso");
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogWarning(ex, "Erro ao carregar modelo de Resumo do cache, treinando novo modelo");
+                        _model = null;
+                    }
+                }
 
-                // Treina o modelo de Resumo
-                activity?.AddEvent(new ActivityEvent("Treinando modelo de Resumo"));
-                _model = pipelineResumo.Fit(dataView);
+                // Se não conseguiu carregar do cache, treina novo modelo
+                if (_model == null)
+                {
+                    activity?.AddEvent(new ActivityEvent("Criando pipeline do modelo de Resumo"));
+                    // Pipeline simplificado para treinamento mais rápido
+                    var pipelineResumo = _mlContext.Transforms.Conversion.MapValueToKey(
+                            outputColumnName: "Label",
+                            inputColumnName: nameof(SemanaAnalise.ResumoEsperado))
+                        .Append(_mlContext.Transforms.Text.FeaturizeText("TextoFeatures", nameof(SemanaAnalise.Textos)))
+                        .Append(_mlContext.Transforms.Text.FeaturizeText("EmocaoFeatures", nameof(SemanaAnalise.Emocoes)))
+                        .Append(_mlContext.Transforms.Text.FeaturizeText("EmocaoPredominanteFeatures", nameof(SemanaAnalise.EmocaoPredominante)))
+                        .Append(_mlContext.Transforms.Concatenate("Features", "TextoFeatures", "EmocaoFeatures", "EmocaoPredominanteFeatures"))
+                        // Removido NormalizeMinMax para acelerar (pode reduzir precisão mas acelera muito)
+                        .Append(_mlContext.MulticlassClassification.Trainers.SdcaMaximumEntropy(
+                            labelColumnName: "Label",
+                            featureColumnName: "Features",
+                            maximumNumberOfIterations: 10)) // Reduzido de padrão para acelerar
+                        .Append(_mlContext.Transforms.Conversion.MapKeyToValue(
+                            outputColumnName: "PredictedLabel"));
+
+                    // Treina o modelo de Resumo
+                    activity?.AddEvent(new ActivityEvent("Treinando modelo de Resumo"));
+                    _model = pipelineResumo.Fit(dataView);
+                    
+                    // Salva modelo treinado em cache
+                    try
+                    {
+                        Directory.CreateDirectory(Path.GetDirectoryName(modeloResumoPath)!);
+                        _mlContext.Model.Save(_model, dataView.Schema, modeloResumoPath);
+                        _logger.LogInformation("Modelo de Resumo salvo em cache: {Path}", modeloResumoPath);
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogWarning(ex, "Erro ao salvar modelo de Resumo em cache");
+                    }
+                }
                 activity?.SetTag("ml.modelo_resumo_carregado", _model != null);
                 _logger.LogInformation("Modelo de Resumo treinado com sucesso");
 
-                // Pipeline para modelo de Recomendação
-                activity?.AddEvent(new ActivityEvent("Criando pipeline do modelo de Recomendação"));
-                var pipelineRecomendacao = _mlContext.Transforms.Conversion.MapValueToKey(
-                        outputColumnName: "Label",
-                        inputColumnName: nameof(SemanaAnalise.RecomendacaoEsperada))
-                    .Append(_mlContext.Transforms.Text.FeaturizeText("TextoFeatures", nameof(SemanaAnalise.Textos)))
-                    .Append(_mlContext.Transforms.Text.FeaturizeText("EmocaoFeatures", nameof(SemanaAnalise.Emocoes)))
-                    .Append(_mlContext.Transforms.Text.FeaturizeText("EmocaoPredominanteFeatures", nameof(SemanaAnalise.EmocaoPredominante)))
-                    .Append(_mlContext.Transforms.Concatenate("Features", "TextoFeatures", "EmocaoFeatures", "EmocaoPredominanteFeatures"))
-                    .Append(_mlContext.Transforms.NormalizeMinMax("Features"))
-                    .Append(_mlContext.MulticlassClassification.Trainers.SdcaMaximumEntropy(
-                        labelColumnName: "Label",
-                        featureColumnName: "Features"))
-                    .Append(_mlContext.Transforms.Conversion.MapKeyToValue(
-                        outputColumnName: "PredictedLabel"));
+                // Tenta carregar modelo de Recomendação do cache
+                var modeloRecomendacaoPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ML", "Data", "modelo_recomendacao.ml");
+                if (File.Exists(modeloRecomendacaoPath))
+                {
+                    activity?.AddEvent(new ActivityEvent("Carregando modelo de Recomendação do cache"));
+                    try
+                    {
+                        _modelRecomendacao = _mlContext.Model.Load(modeloRecomendacaoPath, out var schema);
+                        _logger.LogInformation("Modelo de Recomendação carregado do cache com sucesso");
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogWarning(ex, "Erro ao carregar modelo de Recomendação do cache, treinando novo modelo");
+                        _modelRecomendacao = null;
+                    }
+                }
 
-                // Treina o modelo de Recomendação
-                activity?.AddEvent(new ActivityEvent("Treinando modelo de Recomendação"));
-                _modelRecomendacao = pipelineRecomendacao.Fit(dataView);
+                // Se não conseguiu carregar do cache, treina novo modelo
+                if (_modelRecomendacao == null)
+                {
+                    activity?.AddEvent(new ActivityEvent("Criando pipeline do modelo de Recomendação"));
+                    // Pipeline simplificado para treinamento mais rápido
+                    var pipelineRecomendacao = _mlContext.Transforms.Conversion.MapValueToKey(
+                            outputColumnName: "Label",
+                            inputColumnName: nameof(SemanaAnalise.RecomendacaoEsperada))
+                        .Append(_mlContext.Transforms.Text.FeaturizeText("TextoFeatures", nameof(SemanaAnalise.Textos)))
+                        .Append(_mlContext.Transforms.Text.FeaturizeText("EmocaoFeatures", nameof(SemanaAnalise.Emocoes)))
+                        .Append(_mlContext.Transforms.Text.FeaturizeText("EmocaoPredominanteFeatures", nameof(SemanaAnalise.EmocaoPredominante)))
+                        .Append(_mlContext.Transforms.Concatenate("Features", "TextoFeatures", "EmocaoFeatures", "EmocaoPredominanteFeatures"))
+                        // Removido NormalizeMinMax para acelerar
+                        .Append(_mlContext.MulticlassClassification.Trainers.SdcaMaximumEntropy(
+                            labelColumnName: "Label",
+                            featureColumnName: "Features",
+                            maximumNumberOfIterations: 10)) // Reduzido de padrão para acelerar
+                        .Append(_mlContext.Transforms.Conversion.MapKeyToValue(
+                            outputColumnName: "PredictedLabel"));
+
+                    // Treina o modelo de Recomendação
+                    activity?.AddEvent(new ActivityEvent("Treinando modelo de Recomendação"));
+                    _modelRecomendacao = pipelineRecomendacao.Fit(dataView);
+                    
+                    // Salva modelo treinado em cache
+                    try
+                    {
+                        Directory.CreateDirectory(Path.GetDirectoryName(modeloRecomendacaoPath)!);
+                        _mlContext.Model.Save(_modelRecomendacao, dataView.Schema, modeloRecomendacaoPath);
+                        _logger.LogInformation("Modelo de Recomendação salvo em cache: {Path}", modeloRecomendacaoPath);
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogWarning(ex, "Erro ao salvar modelo de Recomendação em cache");
+                    }
+                }
                 activity?.SetTag("ml.modelo_recomendacao_carregado", _modelRecomendacao != null);
                 
                 // Cria os PredictionEngines APÓS treinar ambos os modelos
