@@ -1,6 +1,19 @@
 # Mentalance API
 
 API REST desenvolvida em ASP.NET Core 8.0 para gerenciamento de saúde mental, permitindo que usuários registrem check-ins emocionais e recebam análises semanais personalizadas com recomendações geradas por Machine Learning.
+## 📱 Sobre o Projeto
+
+O **Mentalance** é um aplicativo mobile desenvolvido em React Native para ajudar usuários a monitorar e entender melhor suas emoções ao longo do tempo. Através de check-ins diários e análises semanais com inteligência artificial, o aplicativo oferece insights valiosos sobre padrões emocionais e recomendações personalizadas para o bem-estar mental.
+
+## 👥 Integrantes do Grupo
+
+- **André Luís Mesquita de Abreu** - RM558159
+- **Maria Eduarda Brigidio** - RM558575
+- **Rafael Bompadre Lima** - RM556459
+
+## 🎥 Vídeo de Demonstração
+
+[🔗 Link para o vídeo no YouTube](https://youtu.be/Vpxcz1JedAE?si=b9iV8jS9OYC-GHqs)
 
 
 ## 🎯 Sobre o Projeto
